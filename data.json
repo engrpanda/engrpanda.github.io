@@ -62,6 +62,21 @@
   ],
   "projects": [
     {
+      "id": "p1779616427450",
+      "title": "QR Scanner Maker Plus Ultra",
+      "year": "2021",
+      "icon": "📦",
+      "desc": "<h3 class=\"text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold\">QR Scanner Maker Plus Ultra</h3>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\">A <strong>3-in-1 Android QR and barcode utility app</strong> published on the <strong>Google Play Store</strong>, combining real-time camera scanning, photo-based QR reading, and QR code generation into a single lightweight tool.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Overview</h4>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\">Most QR apps do one thing — scan. QR Scanner Maker Plus Ultra does three. Whether you need to scan a code in real time, decode a QR from an existing photo in your gallery, or generate a brand-new QR code from any text or URL, this app handles all of it from a single interface. Two of the three features work fully offline, making it reliable even without a data connection.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Key Features</h4>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>📷 Real-Time QR &amp; Barcode Scanner</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Uses the device camera to instantly scan and decode QR codes and barcodes in real time. Works entirely offline — no internet connection required.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>🖼️ Scan QR from Photos</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Reads and decodes QR codes directly from images stored in the device gallery. Useful for codes that have already been photographed or saved as screenshots. Also works offline.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>✨ QR Code Generator</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Generates a QR code from any text, link, or data input. Allows users to instantly create shareable QR codes for their own content.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>📦 3 Releases on GitHub</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Actively maintained with 3 published releases, with the latest version (v1.0.2) released in January 2024.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Tech Stack</h4>\n<div class=\"overflow-x-auto w-full px-2 mb-6\"><table class=\"min-w-full border-collapse text-sm leading-[1.7] whitespace-normal\"><thead class=\"text-left\"><tr><th scope=\"col\" class=\"text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold\">Category</th><th scope=\"col\" class=\"text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold\">Details</th></tr></thead><tbody><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Platform</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Android</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Distribution</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Google Play Store</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Frontend</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">HTML (WebView-based)</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Features</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Camera scanning · Gallery image decoding · QR generation</td></tr></tbody></table></div>",
+      "image": "https://github.com/engrpanda/QR-Scanner-Maker-plus-Ultra/raw/main/1.jpg",
+      "link": "https://github.com/engrpanda/QR-Scanner-Maker-plus-Ultra/releases",
+      "github": "https://github.com/engrpanda/QR-Scanner-Maker-plus-Ultra",
+      "tags": [
+        "mobile"
+      ],
+      "featured": false,
+      "status": ""
+    },
+    {
       "id": "p1779615947381",
       "title": "WiFi Default Password Plus ULTRA",
       "year": "2020",
