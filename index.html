@@ -1215,7 +1215,8 @@ function renderSkills(){
 const LCOLORS={'JavaScript':'#f1e05a','Python':'#3572A5','C++':'#f34b7d','C':'#888','Java':'#b07219','Kotlin':'#A97BFF','HTML':'#e34c26','CSS':'#563d7c','TypeScript':'#2b7489','Shell':'#89e051','Go':'#00ADD8','Arduino':'#bd79d1','Dart':'#00B4AB'};
 const ICONS=['📦','⚡','🤖','🔧','🌐','💡','📱','🎮','🔬','🛠️','🚀','🧠'];
 function renderGH(user,repos,stars,pinned=[]){
-  ['gh-repos','hs-repos','ct-repos'].forEach(id=>{const e=ge(id);if(e)e.textContent=user.public_repos||'—';});
+  const totalRepos=repos.length||user.public_repos||'—';
+  ['gh-repos','hs-repos','ct-repos'].forEach(id=>{const e=ge(id);if(e)e.textContent=totalRepos;});
   ['gh-followers','hs-followers'].forEach(id=>{const e=ge(id);if(e)e.textContent=user.followers||'—';});
   const gs=ge('gh-stars');if(gs)gs.textContent=stars;
   const gf=ge('gh-following');if(gf)gf.textContent=user.following||'—';
@@ -1259,12 +1260,21 @@ async function fetchGH(){
   const cfg=JSON.parse(localStorage.getItem(GH_SK)||'{}');
   const pinned=(cfg.pinned||[]).map(s=>s.toLowerCase().trim()).filter(Boolean);
   try{
-    const[ur,rr]=await Promise.all([
-      fetch(`https://api.github.com/users/${u}`),
-      fetch(`https://api.github.com/users/${u}/repos?sort=stars&per_page=30&type=owner`)
-    ]);
+    // Fetch all pages of repos to get full count
+    let repos=[];
+    let page=1;
+    while(true){
+      const r=await fetch(`https://api.github.com/users/${u}/repos?sort=stars&per_page=100&page=${page}`);
+      if(!r.ok)break;
+      const batch=await r.json();
+      if(!batch.length)break;
+      repos=[...repos,...batch];
+      if(batch.length<100)break;
+      page++;
+    }
+    const ur=await fetch(`https://api.github.com/users/${u}`);
     if(!ur.ok)throw new Error('API');
-    const user=await ur.json(),repos=await rr.json();
+    const user=await ur.json();
     let stars=0;repos.forEach(r=>stars+=r.stargazers_count||0);
     renderGH(user,repos,stars,pinned);
   }catch(e){
