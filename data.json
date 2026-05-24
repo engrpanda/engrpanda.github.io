@@ -196,7 +196,9 @@
       "image": "https://content.instructables.com/F4S/C1PT/JN4VFQ0O/F4SC1PTJN4VFQ0O.png?frame=true&width=1024&height=1024&fit=bounds",
       "link": "https://www.instructables.com/Manual-Piano-W-Presets-Songs-Using-Arduino/",
       "github": "",
-      "tags": [],
+      "tags": [
+        "arduino"
+      ],
       "featured": false,
       "status": ""
     }
