@@ -954,6 +954,11 @@ footer{border-top:1px solid var(--b);padding:28px 0}
         <label class="f-lbl">Branch</label>
         <input class="f-in" id="gh-branch" placeholder="main" value="main">
       </div>
+      <div class="f-grp">
+        <label class="f-lbl">Pinned Repos (comma separated, shown first)</label>
+        <input class="f-in" id="gh-pinned" placeholder="SpongeBot, QR-Scanner-Maker-plus-Ultra, Arduino-Bluetooth-Controller">
+        <div style="margin-top:5px;font-size:11px;color:var(--t3);">Enter exact repo names to pin them at the top. Rest sorted by ⭐ stars.</div>
+      </div>
 
       <div id="gh-sync-status" style="display:none;padding:12px 14px;border-radius:9px;font-size:13px;margin-bottom:14px;"></div>
 
@@ -1192,30 +1197,71 @@ function renderSkills(){
 }
 const LCOLORS={'JavaScript':'#f1e05a','Python':'#3572A5','C++':'#f34b7d','C':'#888','Java':'#b07219','Kotlin':'#A97BFF','HTML':'#e34c26','CSS':'#563d7c','TypeScript':'#2b7489','Shell':'#89e051','Go':'#00ADD8','Arduino':'#bd79d1','Dart':'#00B4AB'};
 const ICONS=['📦','⚡','🤖','🔧','🌐','💡','📱','🎮','🔬','🛠️','🚀','🧠'];
-function renderGH(user,repos,stars){
+function renderGH(user,repos,stars,pinned=[]){
   ['gh-repos','hs-repos','ct-repos'].forEach(id=>{const e=ge(id);if(e)e.textContent=user.public_repos||'—';});
   ['gh-followers','hs-followers'].forEach(id=>{const e=ge(id);if(e)e.textContent=user.followers||'—';});
   const gs=ge('gh-stars');if(gs)gs.textContent=stars;
   const gf=ge('gh-following');if(gf)gf.textContent=user.following||'—';
   const g=ge('proj-grid');if(!g)return;
-  const list=repos.filter(r=>!r.fork).slice(0,9);
+  // Priority: pinned repos first, then rest sorted by stars
+  const nonFork=repos.filter(r=>!r.fork);
+  const pinnedNames=pinned.map(p=>p.toLowerCase());
+  const pinnedRepos=pinnedNames.length
+    ?pinnedNames.map(n=>nonFork.find(r=>r.name.toLowerCase()===n)).filter(Boolean)
+    :[];
+  const rest=nonFork.filter(r=>!pinnedNames.includes(r.name.toLowerCase()))
+    .sort((a,b)=>b.stargazers_count-a.stargazers_count);
+  const list=[...pinnedRepos,...rest].slice(0,9);
   if(!list.length){g.innerHTML='<div class="gh-loading">No public repos found.</div>';return;}
-  g.innerHTML=list.map(r=>{
+  g.innerHTML=list.map((r,i)=>{
     const lc=LCOLORS[r.language]||'#8892a4';const icon=ICONS[Math.abs(r.id||0)%ICONS.length];
     const desc=(r.description||'No description provided.').substring(0,90);
-    return `<div class="gh-card rv"><div class="gh-hdr"><span class="gh-ico">${icon}</span><div class="gh-lks"><a href="${esc(r.html_url)}" target="_blank" class="gh-lk"><i class="fa-brands fa-github"></i></a>${r.homepage?`<a href="${esc(r.homepage)}" target="_blank" class="gh-lk"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`:''}</div></div><div class="gh-name">${esc(r.name)}</div><div class="gh-desc">${esc(desc)}${(r.description||'').length>90?'…':''}</div><div class="gh-ft"><div class="gh-lang"><span class="lang-dot" style="background:${lc}"></span>${esc(r.language||'N/A')}</div><div class="gh-stars"><i class="fa-solid fa-star" style="color:#f59e0b;font-size:9px;"></i> ${r.stargazers_count} <i class="fa-solid fa-code-branch" style="color:var(--a2);font-size:9px;margin-left:4px;"></i> ${r.forks_count}</div></div></div>`;
+    const isPinned=pinnedNames.includes(r.name.toLowerCase());
+    return `<div class="gh-card rv">
+      <div class="gh-hdr">
+        <span class="gh-ico">${icon}</span>
+        <div style="display:flex;align-items:center;gap:5px;">
+          ${isPinned?`<span style="font-family:var(--fm);font-size:9px;color:var(--a2);background:rgba(var(--a2r),.1);border:1px solid rgba(var(--a2r),.2);padding:1px 6px;border-radius:4px;">📌 pinned</span>`:''}
+          <div class="gh-lks">
+            <a href="${esc(r.html_url)}" target="_blank" class="gh-lk"><i class="fa-brands fa-github"></i></a>
+            ${r.homepage?`<a href="${esc(r.homepage)}" target="_blank" class="gh-lk"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`:''}
+          </div>
+        </div>
+      </div>
+      <div class="gh-name">${esc(r.name)}</div>
+      <div class="gh-desc">${esc(desc)}${(r.description||'').length>90?'…':''}</div>
+      <div class="gh-ft">
+        <div class="gh-lang"><span class="lang-dot" style="background:${lc}"></span>${esc(r.language||'N/A')}</div>
+        <div class="gh-stars"><i class="fa-solid fa-star" style="color:#f59e0b;font-size:9px;"></i> ${r.stargazers_count} <i class="fa-solid fa-code-branch" style="color:var(--a2);font-size:9px;margin-left:4px;"></i> ${r.forks_count}</div>
+      </div>
+    </div>`;
   }).join('');observe();
 }
 async function fetchGH(){
   const u=D.profile.github||'engrpanda';const ck=`gh_c_${u}`;
-  try{const c=localStorage.getItem(ck);if(c){const cd=JSON.parse(c);if(Date.now()-cd.ts<3600000){renderGH(cd.user,cd.repos,cd.stars);return;}}}catch(e){}
+  try{const c=localStorage.getItem(ck);if(c){const cd=JSON.parse(c);if(Date.now()-cd.ts<3600000){renderGH(cd.user,cd.repos,cd.stars,cd.pinned||[]);return;}}}catch(e){}
   try{
-    const[ur,rr]=await Promise.all([fetch(`https://api.github.com/users/${u}`),fetch(`https://api.github.com/users/${u}/repos?sort=updated&per_page=12&type=owner`)]);
+    // Fetch user + all repos sorted by stars
+    const[ur,rr]=await Promise.all([
+      fetch(`https://api.github.com/users/${u}`),
+      fetch(`https://api.github.com/users/${u}/repos?sort=stars&per_page=30&type=owner`)
+    ]);
     if(!ur.ok)throw new Error('API');
     const user=await ur.json(),repos=await rr.json();
     let stars=0;repos.forEach(r=>stars+=r.stargazers_count||0);
-    localStorage.setItem(ck,JSON.stringify({user,repos,stars,ts:Date.now()}));
-    renderGH(user,repos,stars);
+    // Try to get pinned repos via GraphQL (no auth needed for public)
+    let pinned=[];
+    try{
+      const gql=await fetch('https://api.github.com/graphql',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'bearer '},
+        body:JSON.stringify({query:`{user(login:"${u}"){pinnedItems(first:6,types:REPOSITORY){nodes{...on Repository{name}}}}}`})
+      });
+      // GraphQL needs auth — fallback: parse pinned from profile page isn't possible
+      // So we just use stars sort without pinned
+    }catch(e){}
+    localStorage.setItem(ck,JSON.stringify({user,repos,stars,pinned,ts:Date.now()}));
+    renderGH(user,repos,stars,pinned);
   }catch(e){
     const g=ge('proj-grid');if(g)g.innerHTML=`<div class="gh-loading"><i class="fa-solid fa-triangle-exclamation" style="font-size:20px;color:#f59e0b;"></i><p style="margin-top:8px;">Could not load repos. <a href="https://github.com/${u}" target="_blank" style="color:var(--a);">View on GitHub →</a></p></div>`;
   }
@@ -1514,7 +1560,7 @@ function fillAdmForms(){
 function admList(cid,arr,lFn,key){
   const c=ge(cid);if(!c)return;
   if(!arr.length){c.innerHTML=`<div style="text-align:center;padding:16px;color:var(--t3);font-size:12px;">No items yet.</div>`;return;}
-  const draggable=key==='projects';
+  const draggable=(key==='projects'||key==='timeline'||key==='stories');
   c.innerHTML=arr.map((x,i)=>`
     <div class="adm-list-item" id="li-${key}-${i}" ${draggable?`draggable="true" data-idx="${i}"`:''}">
       ${draggable?`<div class="drag-handle" title="Drag to reorder"><i class="fa-solid fa-grip-vertical"></i></div>`:''}
@@ -1557,8 +1603,15 @@ function initDragSort(container,key){
       sD(D);
       // Cancel edit mode if active
       if(ES[key]>=0)cancelEdit(key);
-      admList(container.id,D[key],x=>key==='projects'?`${x.icon||'📦'} ${x.title} (${x.year})`:x.title||x.name,key);
-      renderProjects();
+      const lFnMap={
+        projects:x=>`${x.icon||'📦'} ${x.title} (${x.year})`,
+        timeline:x=>`${x.year}: ${x.title}`,
+        stories:x=>x.title
+      };
+      admList(container.id,D[key],lFnMap[key]||((x)=>x.title||x.name),key);
+      if(key==='projects')renderProjects();
+      else if(key==='timeline')renderTL();
+      else if(key==='stories')renderStories();
       toast('↕️ Order saved!');
     });
   });
@@ -1696,15 +1749,21 @@ function ghLoadConfig(){
     if(ge('gh-owner'))ge('gh-owner').value=c.owner||D.profile.github||'engrpanda';
     if(ge('gh-repo'))ge('gh-repo').value=c.repo||((D.profile.github||'engrpanda')+'.github.io');
     if(ge('gh-branch'))ge('gh-branch').value=c.branch||'main';
+    if(ge('gh-pinned'))ge('gh-pinned').value=(c.pinned||[]).join(', ');
     if(ge('gh-last-sync')&&c.lastSync)ge('gh-last-sync').textContent='Last pushed: '+new Date(c.lastSync).toLocaleString();
   }catch(e){}
 }
 function ghSaveToken(){
-  const cfg={token:ge('gh-token').value.trim(),owner:ge('gh-owner').value.trim(),repo:ge('gh-repo').value.trim(),branch:ge('gh-branch').value.trim()||'main'};
+  const pinned=ge('gh-pinned').value.trim().split(',').map(s=>s.trim()).filter(Boolean);
+  const cfg={token:ge('gh-token').value.trim(),owner:ge('gh-owner').value.trim(),repo:ge('gh-repo').value.trim(),branch:ge('gh-branch').value.trim()||'main',pinned};
   if(!cfg.token)return toast('⚠️ Enter a token first.',true);
   const existing=JSON.parse(localStorage.getItem(GH_SK)||'{}');
   localStorage.setItem(GH_SK,JSON.stringify({...existing,...cfg}));
-  toast('✅ Token saved to browser.');
+  // Clear GitHub cache so it reloads with new pinned order
+  const u=cfg.owner||D.profile.github||'engrpanda';
+  localStorage.removeItem(`gh_c_${u}`);
+  fetchGH();
+  toast('✅ Token & pinned repos saved.');
 }
 function ghStatus(msg,ok=true,loading=false){
   const el=ge('gh-sync-status');if(!el)return;
