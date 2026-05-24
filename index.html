@@ -1357,16 +1357,30 @@ function closeStM(){
 function checkStoryHash(){
   const hash=location.hash;
   if(!hash.startsWith('#story-'))return;
-  // Find story by matching slug+id pattern
-  const hashVal=hash.slice(1); // remove #
+  const hashVal=hash.slice(1);
   const found=D.stories.findIndex(s=>hashVal===('story-'+slugify(s.title)+'-'+s.id));
   if(found>=0){
-    // Small delay to let page render first
     setTimeout(()=>{
-      const sec=ge('stories');if(sec)sec.scrollIntoView({behavior:'smooth'});
-      setTimeout(()=>openSt(found),400);
-    },600);
+      const sec=ge('stories');if(sec)sec.scrollIntoView({behavior:'auto'});
+      setTimeout(()=>openSt(found),500);
+    },800);
   }
+}
+function checkProjectHash(){
+  const hash=location.hash;
+  if(!hash.startsWith('#project-'))return;
+  const hashVal=hash.slice(1);
+  const found=D.projects.findIndex(p=>hashVal===('project-'+slugify(p.title)+'-'+p.id));
+  if(found>=0){
+    setTimeout(()=>{
+      const sec=ge('projects');if(sec)sec.scrollIntoView({behavior:'auto'});
+      setTimeout(()=>openProject(found),500);
+    },800);
+  }
+}
+function checkHash(){
+  checkStoryHash();
+  checkProjectHash();
 }
 function renderAll(){renderHero();renderAbout();renderWID();renderProjects();renderSkills();renderTL();renderHobbies();renderStories();}
 
@@ -1735,8 +1749,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
   // Try to load latest data from GitHub silently
   await loadFromGitHub();
   ghLoadConfig();
-  // Check if URL has a story hash — auto-open that post
-  checkStoryHash();
+  // Re-render with latest data then check URL hash
+  renderAll();
+  observe();
+  checkHash();
 });
 </script>
 </body>
