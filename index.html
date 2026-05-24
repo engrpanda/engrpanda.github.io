@@ -1237,17 +1237,22 @@ function openProject(i){
   ge('proj-modal').classList.add('show');document.body.style.overflow='hidden';
 }
 function closeProjM(){ge('proj-modal').classList.remove('show');document.body.style.overflow='';}
+// ===== STORY HASH ROUTING =====
+function slugify(str){return(str||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function storyUrl(s){return location.origin+location.pathname+'#story-'+slugify(s.title)+'-'+s.id;}
+
 function openSt(i){
   const s=D.stories[i];if(!s)return;
   ge('stm-t').textContent=s.title;
   ge('stm-dt').textContent=fmtDate(s.date);
-  // Render HTML content (rich text)
   ge('stm-cnt').innerHTML=s.content||'';
   ge('stm-tags').innerHTML=(s.tags||[]).map(t=>`<span class="st-tag">${esc(t)}</span>`).join('');
   const img=ge('stm-img');
   if(s.image){img.src=s.image;img.style.display='block';}else{img.style.display='none';}
-  // Share links
-  const url=encodeURIComponent(location.href.split('#')[0]+'#stories');
+  // Set unique per-post URL in hash (no page reload)
+  history.pushState({storyIdx:i},'',storyUrl(s));
+  // Share links using the unique URL
+  const url=encodeURIComponent(storyUrl(s));
   const txt=encodeURIComponent(s.title+' — engrpanda');
   ge('sh-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${url}`;
   ge('sh-tw').href=`https://twitter.com/intent/tweet?text=${txt}&url=${url}`;
@@ -1255,10 +1260,31 @@ function openSt(i){
   ge('st-modal').classList.add('show');document.body.style.overflow='hidden';
 }
 function copyStoryLink(){
-  const url=location.href.split('#')[0]+'#stories';
+  const modal=ge('st-modal');
+  // Get current story index from URL hash
+  const url=location.href;
   navigator.clipboard.writeText(url).then(()=>toast('🔗 Link copied!'));
 }
-function closeStM(){ge('st-modal').classList.remove('show');document.body.style.overflow='';}
+function closeStM(){
+  ge('st-modal').classList.remove('show');document.body.style.overflow='';
+  // Restore hash to #stories when closing
+  history.pushState({},'',location.pathname+'#stories');
+}
+// Check hash on load and open matching story
+function checkStoryHash(){
+  const hash=location.hash;
+  if(!hash.startsWith('#story-'))return;
+  // Find story by matching slug+id pattern
+  const hashVal=hash.slice(1); // remove #
+  const found=D.stories.findIndex(s=>hashVal===('story-'+slugify(s.title)+'-'+s.id));
+  if(found>=0){
+    // Small delay to let page render first
+    setTimeout(()=>{
+      const sec=ge('stories');if(sec)sec.scrollIntoView({behavior:'smooth'});
+      setTimeout(()=>openSt(found),400);
+    },600);
+  }
+}
 function renderAll(){renderHero();renderAbout();renderWID();renderProjects();renderSkills();renderTL();renderHobbies();renderStories();}
 
 // ===== CANVAS =====
@@ -1626,6 +1652,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
   // Try to load latest data from GitHub silently
   await loadFromGitHub();
   ghLoadConfig();
+  // Check if URL has a story hash — auto-open that post
+  checkStoryHash();
 });
 </script>
 </body>
