@@ -1,0 +1,281 @@
+{
+  "profile": {
+    "name": "John Rey Cabatana",
+    "title": "Electronics Engineer · ECE, ECT",
+    "tagline": "just a simple guy who loves panda and building stuff",
+    "avatar": "https://avatars.githubusercontent.com/u/53995355?v=4",
+    "bio": "Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼",
+    "ab1": "Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",
+    "ab2": "Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",
+    "email": "engrpandaece@gmail.com",
+    "github": "engrpanda"
+  },
+  "whatIDo": [
+    {
+      "icon": "fa-microchip",
+      "tag": "embedded",
+      "title": "Embedded Systems",
+      "desc": "Arduino, ESP32, Raspberry Pi — designing circuits and writing firmware from scratch."
+    },
+    {
+      "icon": "fa-robot",
+      "tag": "robotics",
+      "title": "Robotics",
+      "desc": "Educational robots, service robots, cleaning robots and more — from mechanical design to full control systems."
+    },
+    {
+      "icon": "fa-mobile-screen",
+      "tag": "mobile",
+      "title": "Mobile Apps",
+      "desc": "Android apps via Android Studio — Play Store releases, attendance systems, Bluetooth controllers and tools."
+    },
+    {
+      "icon": "fa-desktop",
+      "tag": "pc-apps",
+      "title": "PC Apps (Visual Studio)",
+      "desc": "Windows desktop apps using Microsoft Visual Studio — user forms, macro automation, and business tools."
+    },
+    {
+      "icon": "fa-globe",
+      "tag": "web",
+      "title": "Web Development",
+      "desc": "Full-stack websites for clients using Vercel and Supabase — fast, modern, and database-powered."
+    },
+    {
+      "icon": "fa-wifi",
+      "tag": "iot",
+      "title": "IoT Projects",
+      "desc": "Connecting devices to the internet — home automation, sensor networks, and smart systems."
+    },
+    {
+      "icon": "fa-brain",
+      "tag": "ai",
+      "title": "AI & Machine Learning",
+      "desc": "Integrating AI/ML into embedded and software projects for smarter, more capable systems."
+    }
+  ],
+  "projects": [
+    {
+      "id": "p1",
+      "title": "QR Attendance System",
+      "year": "2026",
+      "icon": "📋",
+      "desc": "QR-SMS Attendance System\nA desktop attendance management application built with C# and Windows Forms, designed to streamline student check-in/check-out for schools using QR code scanning and automated SMS notifications to guardians.\nOverview\nThis project addresses a common pain point in school administration — manual attendance tracking is slow, error-prone, and leaves parents out of the loop. The QR-SMS Attendance System replaces that process with a real-time, camera-based solution that logs attendance and immediately notifies a student's guardian via SMS the moment they arrive or are dismissed.\nKey Features\nQR Code Scanning — Uses the device's webcam (via OpenCvSharp) to continuously scan for student QR codes in real time, with a live camera feed, bounding-box overlay on successful scans, and intelligent decode throttling to keep CPU usage low.\nStudent Database Integration — Loads a student roster directly from an Excel spreadsheet (.xlsx), automatically mapping columns for name, LRN, phone number, address, year level, section, track/strand, guardian, and more. No manual re-entry required.\nAutomated SMS via Webhook — On a successful scan, the app builds a personalized SMS message and dispatches it to a connected Android device via a webhook endpoint. Messages are fully customizable with template placeholders ({fullname}, {status}, {time}, etc.) and include a 5-second cooldown per student to prevent duplicate sends.\nOn-Time / Late Detection — Compares the scan timestamp against a configurable scheduled time (defaulting to 8:00 AM) and automatically stamps each log entry as On Time, Late, or Dismissed for OUT scans.\nCSV Attendance Logging — Every scan is written to a persistent attendance.csv file with full student details, timestamp, and IN/OUT status — ready for reporting or further processing.\nQR Code Generator — Built-in tool to generate and save QR codes from any text input, making it easy to produce ID QR codes for students directly within the same application.\nTech Stack\n\nLanguage / Framework: C# · .NET · Windows Forms\nComputer Vision: OpenCvSharp (webcam capture & frame processing)\nQR Decoding / Encoding: ZXing.Net\nExcel I/O: ClosedXML\nMessaging: HTTP webhook integration (JSON payload to Android SMS bridge)\nData Storage: CSV (attendance log) · plain text (webhook URL history)",
+      "image": "https://github.com/engrpanda/engrpanda.github.io/blob/main/sc/qrsms.png?raw=true",
+      "link": "",
+      "github": "",
+      "tags": [],
+      "featured": false,
+      "status": ""
+    },
+    {
+      "id": "p2",
+      "title": "SpongeBot",
+      "year": "2022",
+      "icon": "🤖",
+      "desc": "Arduino-based robot with Bluetooth app control, obstacle avoidance, and custom body design.",
+      "tags": [
+        "robotics",
+        "embedded",
+        "mobile"
+      ],
+      "image": "",
+      "link": "",
+      "github": "https://github.com/engrpanda/SpongeBot",
+      "featured": true,
+      "status": ""
+    },
+    {
+      "id": "p3",
+      "title": "QR Scanner & Maker Plus Ultra",
+      "year": "2022",
+      "icon": "📱",
+      "desc": "3-in-1 QR & Barcode scanner — scan, read from photos, and generate QR codes. Available on Google Play.",
+      "tags": [
+        "mobile"
+      ],
+      "image": "",
+      "link": "https://play.google.com/store/apps/details?id=com.scannermaker.panda",
+      "github": "https://github.com/engrpanda/QR-Scanner-Maker-plus-Ultra",
+      "featured": false,
+      "status": ""
+    },
+    {
+      "id": "p4",
+      "title": "New Play Store App",
+      "year": "2025",
+      "icon": "🚀",
+      "desc": "Latest Android app on Google Play — more details coming soon!",
+      "tags": [
+        "mobile"
+      ],
+      "image": "",
+      "link": "https://play.google.com/store/apps/developer?id=engrpandaece",
+      "github": "",
+      "featured": false,
+      "status": "wip"
+    },
+    {
+      "id": "p5",
+      "title": "Lego Controller Plus Ultra",
+      "year": "2021",
+      "icon": "🧱",
+      "desc": "Android app to control LEGO EV3/NXT via Bluetooth. No programming needed — multiple gamepad modes.",
+      "tags": [
+        "mobile",
+        "robotics"
+      ],
+      "image": "",
+      "link": "https://play.google.com/store/apps/details?id=com.legocontroller.panda",
+      "github": "https://github.com/engrpanda/Lego-Controller-plus-ULTRA",
+      "featured": false,
+      "status": ""
+    },
+    {
+      "id": "p6",
+      "title": "Arduino Bluetooth Controller",
+      "year": "2020",
+      "icon": "⚡",
+      "desc": "Control Arduino projects via Bluetooth using your phone. Supports HC-05/06 and HM-10 modules.",
+      "tags": [
+        "embedded",
+        "mobile",
+        "iot"
+      ],
+      "image": "",
+      "link": "",
+      "github": "https://github.com/engrpanda/Arduino-Bluetooth-Controller",
+      "featured": false,
+      "status": ""
+    }
+  ],
+  "skills": [
+    {
+      "name": "Arduino / C++",
+      "level": 92,
+      "cat": "Hardware"
+    },
+    {
+      "name": "ESP32 / ESP8266",
+      "level": 88,
+      "cat": "Hardware"
+    },
+    {
+      "name": "PCB Design",
+      "level": 65,
+      "cat": "Hardware"
+    },
+    {
+      "name": "Android Studio",
+      "level": 80,
+      "cat": "Mobile"
+    },
+    {
+      "name": "Python",
+      "level": 75,
+      "cat": "Software"
+    },
+    {
+      "name": "VB.NET / C# (Visual Studio)",
+      "level": 78,
+      "cat": "Software"
+    },
+    {
+      "name": "Linux / Bash",
+      "level": 80,
+      "cat": "Software"
+    },
+    {
+      "name": "Vercel + Supabase",
+      "level": 72,
+      "cat": "Web"
+    },
+    {
+      "name": "3D Modeling",
+      "level": 60,
+      "cat": "Design"
+    },
+    {
+      "name": "Git / GitHub",
+      "level": 82,
+      "cat": "Tools"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2025",
+      "title": "New Play Store App Released",
+      "desc": "Launched a brand new Android app on Google Play. More details dropping soon.",
+      "type": "achievement"
+    },
+    {
+      "year": "2024",
+      "title": "QR Attendance System",
+      "desc": "Built a QR-based attendance system — Android app, NetSuite printing integration, real-time parent notifications.",
+      "type": "project"
+    },
+    {
+      "year": "2024",
+      "title": "Web & PC App Development",
+      "desc": "Built full-stack websites for clients (Vercel + Supabase) and Windows desktop apps (Visual Studio) including macro and user form automation.",
+      "type": "project"
+    },
+    {
+      "year": "2023",
+      "title": "8+ Years Engineering",
+      "desc": "Continued professional growth — deep-diving embedded systems, robotics, and expanding into web and PC software.",
+      "type": "work"
+    },
+    {
+      "year": "2022",
+      "title": "SpongeBot & Android Apps",
+      "desc": "Built SpongeBot robot and released QR Scanner, BBQniBBM, and Lego Controller on Google Play.",
+      "type": "achievement"
+    },
+    {
+      "year": "2021",
+      "title": "Robotics Deep Dive",
+      "desc": "Built LEGO-inspired and ESP32-based robots. Explored kinematics and Bluetooth control.",
+      "type": "project"
+    },
+    {
+      "year": "2020",
+      "title": "First Projects Documented",
+      "desc": "Started documenting electronics projects during COVID: ArduBT, temperature sensors, WiFi projects.",
+      "type": "project"
+    }
+  ],
+  "hobbies": [
+    {
+      "name": "Electronics & DIY",
+      "icon": "⚡",
+      "desc": "Building circuits and electronic gadgets from scratch — it never gets old."
+    },
+    {
+      "name": "Artificial Intelligence",
+      "icon": "🤖",
+      "desc": "Staying on top of AI/ML trends and integrating them into real projects."
+    },
+    {
+      "name": "Linux & Hacking",
+      "icon": "🐧",
+      "desc": "Exploring Linux systems, terminal tools, and cybersecurity concepts."
+    },
+    {
+      "name": "RetroPi Gaming",
+      "icon": "🎮",
+      "desc": "Setting up retro gaming consoles with Raspberry Pi — nostalgia hits different."
+    },
+    {
+      "name": "Crypto & NFT",
+      "icon": "💎",
+      "desc": "Exploring blockchain technology, DeFi, and the world of digital assets."
+    },
+    {
+      "name": "Open Source",
+      "icon": "🌐",
+      "desc": "Contributing to and learning from the open source community on GitHub."
+    }
+  ],
+  "stories": []
+}
