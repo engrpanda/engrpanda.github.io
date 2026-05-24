@@ -434,9 +434,27 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   .nav-ul{display:none}
   .hbg{display:flex}
   .wid-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .cp-grid{grid-template-columns:1fr;gap:14px}
-  .cp-card.featured{grid-column:span 1}
+  /* Projects — compact horizontal card on mobile */
+  .cp-grid{grid-template-columns:1fr;gap:12px;margin-bottom:36px}
+  .cp-card{flex-direction:row;max-height:120px}
+  .cp-card.featured{grid-column:span 1;flex-direction:column;max-height:none}
+  .cp-card-top{width:3px;height:auto;background:linear-gradient(180deg,var(--a),var(--a2))}
+  .cp-card.featured .cp-card-top{width:auto;height:3px;background:linear-gradient(90deg,var(--a),var(--a2))}
+  .cp-img,.cp-img-ph{width:110px;height:120px;flex-shrink:0}
+  .cp-card.featured .cp-img,.cp-card.featured .cp-img-ph{width:100%;height:160px}
+  .cp-img-ph{font-size:32px}
+  .cp-body{padding:12px;overflow:hidden}
+  .cp-card.featured .cp-body{padding:14px}
+  .cp-title{font-size:13px;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cp-desc{font-size:11px;margin-bottom:6px;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .cp-tags{margin-bottom:0;gap:3px}
+  .cp-tag{font-size:9px;padding:2px 6px}
+  .cp-lks-row{display:none}
+  .cp-card.featured .cp-lks-row{display:flex}
+  /* GitHub stats compact */
   .gh-grid{grid-template-columns:1fr}
+  .gh-stats{flex-direction:row;flex-wrap:wrap;gap:8px}
+  .ghs-card{min-width:calc(50% - 4px);flex:none;padding:10px 12px}
   .hb-grid{grid-template-columns:1fr}
   .st-card{width:140px;height:230px}
   .st-arrow{display:none}
@@ -444,7 +462,6 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   .ab-dets{grid-template-columns:1fr}
   .h-acts{flex-direction:column;gap:10px}
   .h-acts .btn-p,.h-acts .btn-o{width:100%;justify-content:center}
-  .gh-stats{flex-direction:column;gap:10px}
   .f-row,.f-row3{grid-template-columns:1fr}
   .proj-filter-wrap{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none}
   .proj-filter-wrap::-webkit-scrollbar{display:none}
