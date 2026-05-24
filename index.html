@@ -567,15 +567,10 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 
 <section id="projects" class="sec sec-alt">
   <div class="wrap">
-    <div style="margin-bottom:28px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <div>
-        <span class="tag">Portfolio</span>
-        <h2 class="sec-h rv">My <em>Projects</em></h2>
-        <p class="sec-sub rv d1">Things I've built, shipped, and am still working on.</p>
-      </div>
-      <button class="btn-o rv" style="font-size:12px;padding:10px 18px;" onclick="copyProjectsLink()">
-        <i class="fa-solid fa-link"></i> Copy Page Link
-      </button>
+    <div style="margin-bottom:28px;">
+      <span class="tag">Portfolio</span>
+      <h2 class="sec-h rv">My <em>Projects</em></h2>
+      <p class="sec-sub rv d1">Things I've built, shipped, and am still working on.</p>
     </div>
     <div class="proj-filter-wrap rv" id="proj-filters"></div>
     <div class="cp-grid" id="cp-grid"></div>
@@ -992,6 +987,15 @@ footer{border-top:1px solid var(--b);padding:28px 0}
       <div class="cp-tags" style="margin-bottom:16px;" id="pm-tags"></div>
       <div class="stm-cnt" id="pm-desc"></div>
       <div class="cp-lks" style="margin-top:22px;" id="pm-links"></div>
+      <div class="stm-meta-row" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--b);">
+        <span style="font-family:var(--fm);font-size:10px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;">Share Project</span>
+        <div class="stm-share">
+          <a class="share-btn fb" id="pm-sh-fb" href="#" target="_blank" title="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="share-btn tw" id="pm-sh-tw" href="#" target="_blank" title="Share on X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="share-btn wa" id="pm-sh-wa" href="#" target="_blank" title="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <button class="share-btn cp" onclick="copyProjectLink()" title="Copy link"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1280,10 +1284,6 @@ function startStoryAutoScroll(){
 function stopStoryAutoScroll(){
   if(stAutoTimer){clearInterval(stAutoTimer);stAutoTimer=null;}
 }
-function copyProjectsLink(){
-  const url=location.origin+location.pathname+'#projects';
-  navigator.clipboard.writeText(url).then(()=>toast('🔗 Projects link copied!'));
-}
 function copyBlogLink(){
   event.preventDefault();
   const url=location.origin+location.pathname+'#stories';
@@ -1301,9 +1301,24 @@ function openProject(i){
   if(p.link)lks.push(`<a href="${esc(p.link)}" target="_blank" class="cp-lk primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>`);
   if(p.github)lks.push(`<a href="${esc(p.github)}" target="_blank" class="cp-lk"><i class="fa-brands fa-github"></i> GitHub</a>`);
   ge('pm-links').innerHTML=lks.join('');
+  // Share links — use project-specific hash URL
+  const projUrl=location.origin+location.pathname+'#project-'+slugify(p.title)+'-'+p.id;
+  history.pushState({projIdx:i},'',projUrl);
+  const eu=encodeURIComponent(projUrl);
+  const et=encodeURIComponent(p.title+' — engrpanda portfolio');
+  ge('pm-sh-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${eu}`;
+  ge('pm-sh-tw').href=`https://twitter.com/intent/tweet?text=${et}&url=${eu}`;
+  ge('pm-sh-wa').href=`https://wa.me/?text=${et}%20${eu}`;
   ge('proj-modal').classList.add('show');document.body.style.overflow='hidden';
 }
-function closeProjM(){ge('proj-modal').classList.remove('show');document.body.style.overflow='';}
+let _currentProjUrl='';
+function copyProjectLink(){
+  navigator.clipboard.writeText(location.href).then(()=>toast('🔗 Project link copied!'));
+}
+function closeProjM(){
+  ge('proj-modal').classList.remove('show');document.body.style.overflow='';
+  history.pushState({},'',location.pathname+'#projects');
+}
 // ===== STORY HASH ROUTING =====
 function slugify(str){return(str||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
 function storyUrl(s){return location.origin+location.pathname+'#story-'+slugify(s.title)+'-'+s.id;}
