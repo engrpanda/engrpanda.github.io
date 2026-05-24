@@ -1354,33 +1354,40 @@ function closeStM(){
   setTimeout(startStoryAutoScroll,800);
 }
 // Check hash on load and open matching story
-function checkStoryHash(){
-  const hash=location.hash;
-  if(!hash.startsWith('#story-'))return;
-  const hashVal=hash.slice(1);
-  const found=D.stories.findIndex(s=>hashVal===('story-'+slugify(s.title)+'-'+s.id));
-  if(found>=0){
-    setTimeout(()=>{
-      const sec=ge('stories');if(sec)sec.scrollIntoView({behavior:'auto'});
-      setTimeout(()=>openSt(found),500);
-    },800);
+function findByHash(hash){
+  if(hash.startsWith('story-')){
+    // Try exact match first, then slug-only fallback
+    let found=D.stories.findIndex(s=>hash===('story-'+slugify(s.title)+'-'+s.id));
+    if(found<0)found=D.stories.findIndex(s=>hash.startsWith('story-'+slugify(s.title)));
+    return found>=0?{type:'story',idx:found}:null;
   }
-}
-function checkProjectHash(){
-  const hash=location.hash;
-  if(!hash.startsWith('#project-'))return;
-  const hashVal=hash.slice(1);
-  const found=D.projects.findIndex(p=>hashVal===('project-'+slugify(p.title)+'-'+p.id));
-  if(found>=0){
-    setTimeout(()=>{
-      const sec=ge('projects');if(sec)sec.scrollIntoView({behavior:'auto'});
-      setTimeout(()=>openProject(found),500);
-    },800);
+  if(hash.startsWith('project-')){
+    let found=D.projects.findIndex(p=>hash===('project-'+slugify(p.title)+'-'+p.id));
+    if(found<0)found=D.projects.findIndex(p=>hash.startsWith('project-'+slugify(p.title)));
+    return found>=0?{type:'project',idx:found}:null;
   }
+  return null;
 }
 function checkHash(){
-  checkStoryHash();
-  checkProjectHash();
+  const hash=location.hash.slice(1);
+  if(!hash.startsWith('story-')&&!hash.startsWith('project-'))return;
+  let attempts=0;
+  function tryOpen(){
+    const match=findByHash(hash);
+    if(match){
+      const secId=match.type==='story'?'stories':'projects';
+      const sec=ge(secId);if(sec)sec.scrollIntoView({behavior:'auto'});
+      setTimeout(()=>{
+        if(match.type==='story')openSt(match.idx);
+        else openProject(match.idx);
+      },400);
+    } else if(attempts<8){
+      // retry every 500ms while data might still be loading
+      attempts++;
+      setTimeout(tryOpen,500);
+    }
+  }
+  setTimeout(tryOpen,600);
 }
 function renderAll(){renderHero();renderAbout();renderWID();renderProjects();renderSkills();renderTL();renderHobbies();renderStories();}
 
@@ -1738,6 +1745,7 @@ async function loadFromGitHub(){
     // Only use remote if it looks valid
     if(remote&&remote.profile&&remote.projects){
       D=remote;sD(D);renderAll();
+      checkHash();// re-check now that real data is loaded
     }
   }catch(e){/* silent fail — use localStorage */}
 }
