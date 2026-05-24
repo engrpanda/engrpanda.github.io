@@ -64,11 +64,8 @@
       "image": "https://github.com/engrpanda/engrpanda.github.io/blob/main/sc/qrsms.png?raw=true",
       "link": "",
       "github": "",
-      "tags": [
-        "mobile",
-        "pc-apps"
-      ],
-      "featured": true,
+      "tags": [],
+      "featured": false,
       "status": ""
     },
     {
