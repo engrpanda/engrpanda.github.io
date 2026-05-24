@@ -60,91 +60,14 @@
       "title": "QR Attendance System",
       "year": "2026",
       "icon": "📋",
-      "desc": "QR-SMS Attendance System\nA desktop attendance management application built with C# and Windows Forms, designed to streamline student check-in/check-out for schools using QR code scanning and automated SMS notifications to guardians.\nOverview\nThis project addresses a common pain point in school administration — manual attendance tracking is slow, error-prone, and leaves parents out of the loop. The QR-SMS Attendance System replaces that process with a real-time, camera-based solution that logs attendance and immediately notifies a student's guardian via SMS the moment they arrive or are dismissed.\nKey Features\nQR Code Scanning — Uses the device's webcam (via OpenCvSharp) to continuously scan for student QR codes in real time, with a live camera feed, bounding-box overlay on successful scans, and intelligent decode throttling to keep CPU usage low.\nStudent Database Integration — Loads a student roster directly from an Excel spreadsheet (.xlsx), automatically mapping columns for name, LRN, phone number, address, year level, section, track/strand, guardian, and more. No manual re-entry required.\nAutomated SMS via Webhook — On a successful scan, the app builds a personalized SMS message and dispatches it to a connected Android device via a webhook endpoint. Messages are fully customizable with template placeholders ({fullname}, {status}, {time}, etc.) and include a 5-second cooldown per student to prevent duplicate sends.\nOn-Time / Late Detection — Compares the scan timestamp against a configurable scheduled time (defaulting to 8:00 AM) and automatically stamps each log entry as On Time, Late, or Dismissed for OUT scans.\nCSV Attendance Logging — Every scan is written to a persistent attendance.csv file with full student details, timestamp, and IN/OUT status — ready for reporting or further processing.\nQR Code Generator — Built-in tool to generate and save QR codes from any text input, making it easy to produce ID QR codes for students directly within the same application.\nTech Stack\n\nLanguage / Framework: C# · .NET · Windows Forms\nComputer Vision: OpenCvSharp (webcam capture & frame processing)\nQR Decoding / Encoding: ZXing.Net\nExcel I/O: ClosedXML\nMessaging: HTTP webhook integration (JSON payload to Android SMS bridge)\nData Storage: CSV (attendance log) · plain text (webhook URL history)",
+      "desc": "QR-SMS Attendance System\nA desktop attendance management application built with C# and Windows Forms, designed to streamline student check-in/check-out for schools using QR code scanning and automated SMS notifications to guardians.\nOverview\nThis project addresses a common pain point in school administration — manual attendance tracking is slow, error-prone, and leaves parents out of the loop. The QR-SMS Attendance System replaces that process with a real-time, camera-based solution that logs attendance and immediately notifies a student's guardian via SMS the moment they arrive or are dismissed.\nKey Features\nQR Code Scanning — Uses the device's webcam (via OpenCvSharp) to continuously scan for student QR codes in real time, with a live camera feed, bounding-box overlay on successful scans, and intelligent decode throttling to keep CPU usage low.\nStudent Database Integration — Loads a student roster directly from an Excel spreadsheet (.xlsx), automatically mapping columns for name, LRN, phone number, address, year level, section, track/strand, guardian, and more. No manual re-entry required.\nAutomated SMS via Webhook — On a successful scan, the app builds a personalized SMS message and dispatches it to a connected Android device via a webhook endpoint. Messages are fully customizable with template placeholders ({fullname}, {status}, {time}, etc.) and include a 5-second cooldown per student to prevent duplicate sends.\nOn-Time / Late Detection — Compares the scan timestamp against a configurable scheduled time (defaulting to 8:00 AM) and automatically stamps each log entry as On Time, Late, or Dismissed for OUT scans.\nCSV Attendance Logging — Every scan is written to a persistent attendance.csv file with full student details, timestamp, and IN/OUT status — ready for reporting or further processing.\nQR Code Generator — Built-in tool to generate and save QR codes from any text input, making it easy to produce ID QR codes for students directly within the same application.\nTech Stack\n\nLanguage / Framework: C# · .NET · Windows Forms\nComputer Vision: OpenCvSharp (webcam capture &amp; frame processing)\nQR Decoding / Encoding: ZXing.Net\nExcel I/O: ClosedXML\nMessaging: HTTP webhook integration (JSON payload to Android SMS bridge)\nData Storage: CSV (attendance log) · plain text (webhook URL history)",
       "image": "https://github.com/engrpanda/engrpanda.github.io/blob/main/sc/qrsms.png?raw=true",
       "link": "",
       "github": "",
-      "tags": [],
-      "featured": false,
-      "status": ""
-    },
-    {
-      "id": "p2",
-      "title": "SpongeBot",
-      "year": "2022",
-      "icon": "🤖",
-      "desc": "Arduino-based robot with Bluetooth app control, obstacle avoidance, and custom body design.",
-      "tags": [
-        "robotics",
-        "embedded",
-        "mobile"
-      ],
-      "image": "",
-      "link": "",
-      "github": "https://github.com/engrpanda/SpongeBot",
-      "featured": true,
-      "status": ""
-    },
-    {
-      "id": "p3",
-      "title": "QR Scanner & Maker Plus Ultra",
-      "year": "2022",
-      "icon": "📱",
-      "desc": "3-in-1 QR & Barcode scanner — scan, read from photos, and generate QR codes. Available on Google Play.",
-      "tags": [
-        "mobile"
-      ],
-      "image": "",
-      "link": "https://play.google.com/store/apps/details?id=com.scannermaker.panda",
-      "github": "https://github.com/engrpanda/QR-Scanner-Maker-plus-Ultra",
-      "featured": false,
-      "status": ""
-    },
-    {
-      "id": "p4",
-      "title": "New Play Store App",
-      "year": "2025",
-      "icon": "🚀",
-      "desc": "Latest Android app on Google Play — more details coming soon!",
-      "tags": [
-        "mobile"
-      ],
-      "image": "",
-      "link": "https://play.google.com/store/apps/developer?id=engrpandaece",
-      "github": "",
-      "featured": false,
-      "status": "wip"
-    },
-    {
-      "id": "p5",
-      "title": "Lego Controller Plus Ultra",
-      "year": "2021",
-      "icon": "🧱",
-      "desc": "Android app to control LEGO EV3/NXT via Bluetooth. No programming needed — multiple gamepad modes.",
       "tags": [
         "mobile",
-        "robotics"
+        "pc-apps"
       ],
-      "image": "",
-      "link": "https://play.google.com/store/apps/details?id=com.legocontroller.panda",
-      "github": "https://github.com/engrpanda/Lego-Controller-plus-ULTRA",
-      "featured": false,
-      "status": ""
-    },
-    {
-      "id": "p6",
-      "title": "Arduino Bluetooth Controller",
-      "year": "2020",
-      "icon": "⚡",
-      "desc": "Control Arduino projects via Bluetooth using your phone. Supports HC-05/06 and HM-10 modules.",
-      "tags": [
-        "embedded",
-        "mobile",
-        "iot"
-      ],
-      "image": "",
-      "link": "",
-      "github": "https://github.com/engrpanda/Arduino-Bluetooth-Controller",
       "featured": false,
       "status": ""
     }
