@@ -231,20 +231,29 @@ input,textarea,select{font-family:inherit}
 .hb-nm{font-family:var(--fd);font-size:14px;font-weight:700;margin-bottom:4px}
 .hb-d{font-size:12px;color:var(--t2);line-height:1.6}
 
-/* STORIES */
-.st-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.st-card{background:var(--card);border:1px solid var(--b);border-radius:var(--rl);overflow:hidden;transition:var(--ease);cursor:pointer}
-.st-card:hover{border-color:var(--bh);transform:translateY(-5px);box-shadow:var(--glow)}
-.st-img{width:100%;height:180px;object-fit:cover;background:var(--bg2)}
-.st-ph{width:100%;height:180px;background:linear-gradient(135deg,rgba(var(--ar),.1),rgba(var(--a2r),.1));display:flex;align-items:center;justify-content:center;font-size:36px}
-.st-body{padding:16px}
-.st-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:5px}
-.st-dt{font-family:var(--fm);font-size:10px;color:var(--t3)}
-.st-tags{display:flex;gap:4px;flex-wrap:wrap}
-.st-tag{font-size:9px;font-weight:700;color:var(--a);background:rgba(var(--ar),.12);padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
-.st-title{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.3}
-.st-ex{font-size:12px;color:var(--t2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* STORIES — cover only */
+.st-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.st-cover{position:relative;border-radius:var(--rl);overflow:hidden;cursor:pointer;background:var(--bg3);background-size:cover;background-position:center;aspect-ratio:4/3;transition:var(--ease);border:1px solid var(--b)}
+.st-cover:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.5),var(--glow);border-color:var(--bh)}
+.st-cover-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,rgba(var(--ar),.1),rgba(var(--a2r),.1))}
+.st-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,11,18,.96) 0%,rgba(7,11,18,.4) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px;opacity:0;transition:var(--ease)}
+.st-cover:hover .st-cover-overlay,.st-cover-ph~.st-cover-overlay{opacity:1}
+.st-cover-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px}
+.st-cover-title{font-family:var(--fd);font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:5px}
+.st-cover-date{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px}
 .st-empty{grid-column:1/-1;text-align:center;padding:52px;color:var(--t3)}
+/* Always show overlay when no image */
+.st-cover:not([style*="background-image"]) .st-cover-overlay{opacity:1}
+.st-tag{font-size:9px;font-weight:700;color:var(--a);background:rgba(var(--ar),.12);padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+
+/* PROJECT READ MORE */
+.cp-lks-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;flex-wrap:wrap}
+.cp-read-more{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:10px;color:var(--a);letter-spacing:1px;text-transform:uppercase;background:none;border:none;cursor:pointer;padding:0;transition:var(--ease)}
+.cp-read-more:hover{opacity:.7}
+
+/* PROJECT MODAL */
+#proj-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(18px);z-index:800;align-items:center;justify-content:center;padding:16px}
+#proj-modal.show{display:flex}
 
 /* CONTACT */
 .ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
@@ -347,8 +356,43 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 .stm-x{width:32px;height:32px;border-radius:7px;border:1px solid var(--b);color:var(--t2);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:var(--ease)}
 .stm-x:hover{border-color:#ff5b5b;color:#ff5b5b}
 .stm-body{padding:24px}
-.stm-img{width:100%;border-radius:var(--r);margin-bottom:16px}
-.stm-cnt{color:var(--t2);line-height:1.85;white-space:pre-wrap;font-size:15px}
+.stm-img{width:100%;border-radius:var(--r);margin-bottom:16px;max-height:340px;object-fit:cover}
+.stm-meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.stm-share{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.share-btn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;transition:var(--ease);border:none;cursor:pointer;text-decoration:none;flex-shrink:0}
+.share-btn.fb{background:#1877f2;color:#fff}.share-btn.fb:hover{background:#0f61d6}
+.share-btn.tw{background:#000;color:#fff}.share-btn.tw:hover{background:#333}
+.share-btn.wa{background:#25d366;color:#fff}.share-btn.wa:hover{background:#1aab52}
+.share-btn.cp{background:rgba(var(--ar),.12);color:var(--a);border:1px solid rgba(var(--ar),.25)}.share-btn.cp:hover{background:rgba(var(--ar),.22)}
+.stm-cnt{color:var(--t2);line-height:1.85;font-size:15px}
+.stm-cnt h2{font-family:var(--fd);font-size:22px;font-weight:800;color:var(--t1);margin:20px 0 10px}
+.stm-cnt h3{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--t1);margin:18px 0 8px}
+.stm-cnt h4{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--t1);margin:14px 0 6px}
+.stm-cnt p{margin-bottom:12px}
+.stm-cnt ul,.stm-cnt ol{padding-left:22px;margin-bottom:12px}
+.stm-cnt li{margin-bottom:5px}
+.stm-cnt a{color:var(--a);text-decoration:underline}
+.stm-cnt img{max-width:100%;border-radius:var(--r);margin:10px 0}
+.stm-cnt strong{color:var(--t1);font-weight:700}
+.stm-cnt em{font-style:italic}
+
+/* RICH TEXT EDITOR */
+.rte-wrap{border:1px solid var(--b);border-radius:10px;overflow:hidden;background:rgba(255,255,255,.03)}
+.rte-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:2px;padding:8px 10px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--b)}
+.rte-btn{width:28px;height:28px;border-radius:6px;border:none;background:none;color:var(--t2);font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--ease);flex-shrink:0}
+.rte-btn:hover{background:rgba(var(--ar),.12);color:var(--a)}
+.rte-btn-danger:hover{background:rgba(255,91,91,.1);color:#ff5b5b}
+.rte-sel{background:rgba(255,255,255,.05);border:1px solid var(--b);border-radius:6px;color:var(--t2);font-size:11px;padding:3px 6px;cursor:pointer;outline:none;max-width:80px}
+.rte-sel option{background:var(--bg2)}
+.rte-sep{width:1px;height:18px;background:var(--b);margin:0 3px;flex-shrink:0}
+.rte-editor{padding:12px 14px;min-height:160px;color:var(--t1);font-size:14px;line-height:1.7;outline:none;font-family:var(--fb)}
+.rte-editor:empty::before{content:'Write your story here...';color:var(--t3);pointer-events:none}
+.rte-editor h2{font-family:var(--fd);font-size:20px;font-weight:800;margin:14px 0 7px;color:var(--t1)}
+.rte-editor h3{font-family:var(--fd);font-size:16px;font-weight:700;margin:12px 0 6px;color:var(--t1)}
+.rte-editor h4{font-family:var(--fd);font-size:14px;font-weight:700;margin:10px 0 5px;color:var(--t1)}
+.rte-editor ul,.rte-editor ol{padding-left:20px;margin:8px 0}
+.rte-editor a{color:var(--a);text-decoration:underline}
+.rte-editor img{max-width:100%;border-radius:8px;margin:8px 0}
 
 /* ANIMATIONS */
 @keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
@@ -441,7 +485,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
       <div class="h-eye"><div class="h-line"></div><span class="h-et" id="h-tagline">just a simple guy who loves panda and building stuff</span></div>
       <div class="h-name" id="h-name">John Rey<br><span class="ac">Cabatana</span></div>
       <div class="h-role-w"><div class="h-role" id="h-role">Electronics Engineer<span class="cursor"></span></div></div>
-      <div class="h-bio" id="h-bio">Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼</div>
+      <div class="h-bio" id="h-bio">Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Quezon City, PH. 🐼</div>
       <div class="h-acts">
         <a href="#projects" class="btn-p"><i class="fa-solid fa-layer-group"></i> View Projects</a>
         <a href="#contact" class="btn-o"><i class="fa-regular fa-envelope"></i> Get in Touch</a>
@@ -460,7 +504,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   <div class="h-stats">
     <div class="h-stat"><div class="h-stat-n" id="hs-repos">—</div><div class="h-stat-l">Repos</div></div>
     <div class="h-stat"><div class="h-stat-n" id="hs-followers">—</div><div class="h-stat-l">Followers</div></div>
-    <div class="h-stat"><div class="h-stat-n">8+</div><div class="h-stat-l">Yrs Exp</div></div>
+    <div class="h-stat"><div class="h-stat-n">4+</div><div class="h-stat-l">Yrs Exp</div></div>
   </div>
 </section>
 
@@ -476,13 +520,13 @@ footer{border-top:1px solid var(--b);padding:28px 0}
         <span class="tag">About Me</span>
         <h2 class="sec-h rv">The Guy Behind <em>engrpanda</em></h2>
         <div class="rv d1">
-          <p id="ab-p1">Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.</p>
+          <p id="ab-p1">Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.</p>
           <p id="ab-p2">Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.</p>
         </div>
         <div class="ab-dets rv d2">
           <div class="ab-det"><label>Name</label><strong id="ab-name">John Rey Cabatana</strong></div>
           <div class="ab-det"><label>Title</label><strong id="ab-title">ECE, ECT</strong></div>
-          <div class="ab-det"><label>Location</label><strong>Manila City, PH 🇵🇭</strong></div>
+          <div class="ab-det"><label>Location</label><strong>Quezon City, PH 🇵🇭</strong></div>
           <div class="ab-det"><label>Email</label><strong id="ab-email">engrpandaece@gmail.com</strong></div>
         </div>
         <div class="ab-links rv d3">
@@ -598,7 +642,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
             <div style="font-size:11px;color:var(--t3);margin-top:2px;">GitHub Repos</div>
           </div>
           <div class="card" style="text-align:center;">
-            <div style="font-family:var(--fd);font-size:24px;font-weight:800;color:var(--a2);">8+</div>
+            <div style="font-family:var(--fd);font-size:24px;font-weight:800;color:var(--a2);">4+</div>
             <div style="font-size:11px;color:var(--t3);margin-top:2px;">Years Exp</div>
           </div>
         </div>
@@ -672,7 +716,37 @@ footer{border-top:1px solid var(--b);padding:28px 0}
           <div class="f-grp"><label class="f-lbl">Year</label><input class="f-in" id="cpf-yr" placeholder="2025"></div>
           <div class="f-grp"><label class="f-lbl">Emoji Icon</label><input class="f-in" id="cpf-em" placeholder="📱"></div>
         </div>
-        <div class="f-grp"><label class="f-lbl">Description</label><textarea class="f-ta" id="cpf-desc" style="min-height:80px;"></textarea></div>
+        <div class="f-grp">
+          <label class="f-lbl">Description</label>
+          <div class="rte-wrap">
+            <div class="rte-toolbar">
+              <button type="button" class="rte-btn" onclick="rteCmd2('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd2('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd2('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+              <div class="rte-sep"></div>
+              <select class="rte-sel" onchange="rteCmd2('formatBlock',this.value);this.value=''">
+                <option value="">Paragraph</option>
+                <option value="h2">H2</option>
+                <option value="h3">H3</option>
+                <option value="h4">H4</option>
+              </select>
+              <select class="rte-sel" onchange="rteFontSize2(this.value);this.value=''">
+                <option value="">Size</option>
+                <option value="12px">Small</option>
+                <option value="15px">Normal</option>
+                <option value="18px">Large</option>
+                <option value="22px">X-Large</option>
+              </select>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn" onclick="rteCmd2('insertUnorderedList')" title="Bullets"><i class="fa-solid fa-list-ul"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd2('insertOrderedList')" title="Numbered"><i class="fa-solid fa-list-ol"></i></button>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn" onclick="rteLink2()" title="Link"><i class="fa-solid fa-link"></i></button>
+              <button type="button" class="rte-btn rte-btn-danger" onclick="rteCmd2('removeFormat')" title="Clear"><i class="fa-solid fa-text-slash"></i></button>
+            </div>
+            <div class="rte-editor" id="cpf-editor" contenteditable="true" spellcheck="true"></div>
+          </div>
+        </div>
         <div class="f-grp"><label class="f-lbl">Cover Image URL</label><input class="f-in" id="cpf-img" placeholder="https://..."></div>
         <div class="f-row">
           <div class="f-grp"><label class="f-lbl">Project / Demo Link</label><input class="f-in" id="cpf-link" placeholder="https://..."></div>
@@ -788,7 +862,44 @@ footer{border-top:1px solid var(--b);padding:28px 0}
           <div class="f-grp"><label class="f-lbl">Tags (comma separated)</label><input class="f-in" id="sf2-tags" placeholder="arduino, build, diy"></div>
         </div>
         <div class="f-grp"><label class="f-lbl">Cover Image URL</label><input class="f-in" id="sf2-img" placeholder="https://..."></div>
-        <div class="f-grp"><label class="f-lbl">Content</label><textarea class="f-ta" id="sf2-cnt" style="min-height:110px;"></textarea></div>
+        <div class="f-grp">
+          <label class="f-lbl">Content</label>
+          <div class="rte-wrap">
+            <div class="rte-toolbar" id="rte-toolbar">
+              <button type="button" class="rte-btn" onclick="rteCmd('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('strikeThrough')" title="Strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+              <div class="rte-sep"></div>
+              <select class="rte-sel" onchange="rteCmd('formatBlock',this.value);this.value=''" title="Heading">
+                <option value="">Paragraph</option>
+                <option value="h2">Heading 2</option>
+                <option value="h3">Heading 3</option>
+                <option value="h4">Heading 4</option>
+              </select>
+              <select class="rte-sel" onchange="rteFontSize(this.value);this.value=''" title="Font size">
+                <option value="">Size</option>
+                <option value="12px">Small</option>
+                <option value="15px">Normal</option>
+                <option value="18px">Large</option>
+                <option value="22px">X-Large</option>
+              </select>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn" onclick="rteCmd('insertUnorderedList')" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('insertOrderedList')" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn" onclick="rteLink()" title="Insert link"><i class="fa-solid fa-link"></i></button>
+              <button type="button" class="rte-btn" onclick="rteImg()" title="Insert image"><i class="fa-regular fa-image"></i></button>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn" onclick="rteCmd('justifyLeft')" title="Align left"><i class="fa-solid fa-align-left"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('justifyCenter')" title="Center"><i class="fa-solid fa-align-center"></i></button>
+              <button type="button" class="rte-btn" onclick="rteCmd('justifyRight')" title="Align right"><i class="fa-solid fa-align-right"></i></button>
+              <div class="rte-sep"></div>
+              <button type="button" class="rte-btn rte-btn-danger" onclick="rteCmd('removeFormat')" title="Clear formatting"><i class="fa-solid fa-text-slash"></i></button>
+            </div>
+            <div class="rte-editor" id="sf2-editor" contenteditable="true" spellcheck="true"></div>
+          </div>
+        </div>
         <div class="adm-actions">
           <button class="adm-save" id="sf2-btn" onclick="saveStory()"><i class="fa-solid fa-paper-plane"></i> Publish Story</button>
           <button class="adm-cancel" id="sf2-cancel" onclick="cancelEdit('stories')"><i class="fa-solid fa-xmark"></i> Cancel</button>
@@ -852,18 +963,45 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   </div>
 </div>
 
+<div id="proj-modal">
+  <div class="stm-box" style="max-width:780px;">
+    <div class="stm-hdr">
+      <div style="flex:1;min-width:0;">
+        <div class="cp-meta" style="margin-bottom:8px;" id="pm-meta"></div>
+        <h3 style="font-family:var(--fd);font-size:22px;font-weight:800;line-height:1.2;" id="pm-title"></h3>
+      </div>
+      <button class="stm-x" onclick="closeProjM()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="stm-body">
+      <img src="" alt="" class="stm-img" id="pm-img" style="display:none;max-height:320px;object-fit:cover;">
+      <div class="cp-tags" style="margin-bottom:16px;" id="pm-tags"></div>
+      <div class="stm-cnt" id="pm-desc"></div>
+      <div class="cp-lks" style="margin-top:22px;" id="pm-links"></div>
+    </div>
+  </div>
+</div>
+
 <div id="st-modal">
   <div class="stm-box">
     <div class="stm-hdr">
-      <div>
+      <div style="flex:1;min-width:0;">
         <div style="font-family:var(--fm);font-size:10px;color:var(--a);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;" id="stm-dt"></div>
-        <h3 style="font-family:var(--fd);font-size:19px;font-weight:700;" id="stm-t"></h3>
+        <h3 style="font-family:var(--fd);font-size:19px;font-weight:700;line-height:1.3;" id="stm-t"></h3>
       </div>
       <button class="stm-x" onclick="closeStM()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="stm-body">
       <img src="" alt="" class="stm-img" id="stm-img" style="display:none;">
-      <div class="st-tags" style="margin-bottom:14px;" id="stm-tags"></div>
+      <div class="stm-meta-row">
+        <div class="st-tags" id="stm-tags"></div>
+        <div class="stm-share" id="stm-share">
+          <span style="font-family:var(--fm);font-size:10px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;">Share</span>
+          <a class="share-btn fb" id="sh-fb" href="#" target="_blank" title="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="share-btn tw" id="sh-tw" href="#" target="_blank" title="Share on X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="share-btn wa" id="sh-wa" href="#" target="_blank" title="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <button class="share-btn cp" id="sh-cp" onclick="copyStoryLink()" title="Copy link"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
       <div class="stm-cnt" id="stm-cnt"></div>
     </div>
   </div>
@@ -873,7 +1011,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 <script>
 // ===== DEFAULT DATA =====
 const DD={
-  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"just a simple guy who loves panda and building stuff",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼",ab1:"Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"engrpandaece@gmail.com",github:"engrpanda"},
+  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"just a simple guy who loves panda and building stuff",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Quezon City, PH. 🐼",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"engrpandaece@gmail.com",github:"engrpanda"},
   whatIDo:[
     {icon:"fa-microchip",tag:"embedded",title:"Embedded Systems",desc:"Arduino, ESP32, Raspberry Pi — designing circuits and writing firmware from scratch."},
     {icon:"fa-robot",tag:"robotics",title:"Robotics",desc:"Educational robots, service robots, cleaning robots and more — from mechanical design to full control systems."},
@@ -903,7 +1041,7 @@ const DD={
     {year:"2025",title:"New Play Store App Released",desc:"Launched a brand new Android app on Google Play. More details dropping soon.",type:"achievement"},
     {year:"2024",title:"QR Attendance System",desc:"Built a QR-based attendance system — Android app, NetSuite printing integration, real-time parent notifications.",type:"project"},
     {year:"2024",title:"Web & PC App Development",desc:"Built full-stack websites for clients (Vercel + Supabase) and Windows desktop apps (Visual Studio) including macro and user form automation.",type:"project"},
-    {year:"2023",title:"8+ Years Engineering",desc:"Continued professional growth — deep-diving embedded systems, robotics, and expanding into web and PC software.",type:"work"},
+    {year:"2023",title:"4+ Years Engineering",desc:"Continued professional growth — deep-diving embedded systems, robotics, and expanding into web and PC software.",type:"work"},
     {year:"2022",title:"SpongeBot & Android Apps",desc:"Built SpongeBot robot and released QR Scanner, BBQniBBM, and Lego Controller on Google Play.",type:"achievement"},
     {year:"2021",title:"Robotics Deep Dive",desc:"Built LEGO-inspired and ESP32-based robots. Explored kinematics and Bluetooth control.",type:"project"},
     {year:"2020",title:"First Projects Documented",desc:"Started documenting electronics projects during COVID: ArduBT, temperature sensors, WiFi projects.",type:"project"}
@@ -987,13 +1125,17 @@ function renderProjects(){
     renderProjFilters();return;
   }
   g.innerHTML=D.projects.map((p,i)=>{
-    const tagHtml=(p.tags||[]).map(t=>{const w=D.whatIDo.find(x=>x.tag===t);return `<span class="cp-tag" onclick="filterProjects('${esc(t)}')">${esc(w?w.title:t)}</span>`;}).join('');
+    const tagHtml=(p.tags||[]).map(t=>{const w=D.whatIDo.find(x=>x.tag===t);return `<span class="cp-tag" onclick="event.stopPropagation();filterProjects('${esc(t)}')">${esc(w?w.title:t)}</span>`;}).join('');
     const img=p.image?`<img src="${esc(p.image)}" class="cp-img" alt="${esc(p.title)}" onerror="this.style.display='none'">`:`<div class="cp-img-ph">${p.icon||'📦'}</div>`;
     const lks=[];
-    if(p.link)lks.push(`<a href="${esc(p.link)}" target="_blank" class="cp-lk primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> View</a>`);
-    if(p.github)lks.push(`<a href="${esc(p.github)}" target="_blank" class="cp-lk"><i class="fa-brands fa-github"></i> GitHub</a>`);
+    if(p.link)lks.push(`<a href="${esc(p.link)}" target="_blank" class="cp-lk primary" onclick="event.stopPropagation()"><i class="fa-solid fa-arrow-up-right-from-square"></i> View</a>`);
+    if(p.github)lks.push(`<a href="${esc(p.github)}" target="_blank" class="cp-lk" onclick="event.stopPropagation()"><i class="fa-brands fa-github"></i> GitHub</a>`);
     const hidden=activeFilter!=='all'&&!(p.tags||[]).includes(activeFilter)?'hidden':'';
-    return `<div class="cp-card${p.featured?' featured':''} ${hidden}" data-tags="${(p.tags||[]).join(',')}">
+    // Strip HTML for card preview, keep HTML for modal
+    const plainDesc=(p.desc||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+    const shortDesc=plainDesc.length>120?(plainDesc.substring(0,120)+'…'):plainDesc;
+    const hasMore=plainDesc.length>120;
+    return `<div class="cp-card${p.featured?' featured':''} ${hidden}" data-tags="${(p.tags||[]).join(',')}" onclick="openProject(${i})" style="cursor:pointer;">
       <div class="cp-card-top"></div>
       ${img}
       <div class="cp-body">
@@ -1004,9 +1146,12 @@ function renderProjects(){
           ${p.status==='soon'?'<span class="cp-soon">Coming Soon</span>':''}
         </div>
         <div class="cp-title">${esc(p.title)}</div>
-        <div class="cp-desc">${esc(p.desc)}</div>
+        <div class="cp-desc">${esc(shortDesc)}</div>
         <div class="cp-tags">${tagHtml}</div>
-        ${lks.length?`<div class="cp-lks">${lks.join('')}</div>`:''}
+        <div class="cp-lks-row">
+          ${lks.length?`<div class="cp-lks">${lks.join('')}</div>`:''}
+          ${hasMore?`<button class="cp-read-more" onclick="event.stopPropagation();openProject(${i})">Read more <i class="fa-solid fa-arrow-right" style="font-size:9px;"></i></button>`:''}
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -1067,16 +1212,52 @@ function renderStories(){
   if(!D.stories.length){g.innerHTML=`<div class="st-empty"><div style="font-size:36px;margin-bottom:12px;">📝</div><div style="font-weight:600;margin-bottom:5px;">No stories yet</div><div style="font-size:13px;color:var(--t3);">Add your first story from the admin panel.</div></div>`;return;}
   g.innerHTML=D.stories.map((s,i)=>{
     const tags=(s.tags||[]).map(t=>`<span class="st-tag">${esc(t)}</span>`).join('');
-    const img=s.image?`<img src="${esc(s.image)}" class="st-img" alt="${esc(s.title)}" onerror="this.style.display='none'">`:`<div class="st-ph">📖</div>`;
-    return `<div class="st-card rv d${Math.min(i+1,3)}" onclick="openSt(${i})">${img}<div class="st-body"><div class="st-meta"><span class="st-dt">${fmtDate(s.date)}</span><div class="st-tags">${tags}</div></div><div class="st-title">${esc(s.title)}</div><div class="st-ex">${esc((s.content||'').substring(0,150))}${s.content.length>150?'…':''}</div></div></div>`;
+    const bg=s.image?`style="background-image:url('${esc(s.image)}')"`:'';
+    return `<div class="st-cover rv d${Math.min(i+1,3)}" onclick="openSt(${i})" ${bg}>
+      ${!s.image?`<div class="st-cover-ph">📖</div>`:''}
+      <div class="st-cover-overlay">
+        <div class="st-cover-tags">${tags}</div>
+        <div class="st-cover-title">${esc(s.title)}</div>
+        <div class="st-cover-date">${fmtDate(s.date)}</div>
+      </div>
+    </div>`;
   }).join('');observe();
 }
+function openProject(i){
+  const p=D.projects[i];if(!p)return;
+  ge('pm-title').textContent=p.title;
+  ge('pm-meta').innerHTML=`<span class="cp-yr">${esc(p.year)}</span>${p.featured?'<span class="cp-feat-badge">Featured</span>':''}${p.status==='wip'?'<span class="cp-wip">🚧 In Progress</span>':''}${p.status==='soon'?'<span class="cp-soon">Coming Soon</span>':''}`;
+  ge('pm-desc').innerHTML=p.desc||'';
+  ge('pm-tags').innerHTML=(p.tags||[]).map(t=>{const w=D.whatIDo.find(x=>x.tag===t);return `<span class="cp-tag">${esc(w?w.title:t)}</span>`;}).join('');
+  const img=ge('pm-img');
+  if(p.image){img.src=p.image;img.style.display='block';}else{img.style.display='none';}
+  const lks=[];
+  if(p.link)lks.push(`<a href="${esc(p.link)}" target="_blank" class="cp-lk primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>`);
+  if(p.github)lks.push(`<a href="${esc(p.github)}" target="_blank" class="cp-lk"><i class="fa-brands fa-github"></i> GitHub</a>`);
+  ge('pm-links').innerHTML=lks.join('');
+  ge('proj-modal').classList.add('show');document.body.style.overflow='hidden';
+}
+function closeProjM(){ge('proj-modal').classList.remove('show');document.body.style.overflow='';}
 function openSt(i){
   const s=D.stories[i];if(!s)return;
-  ge('stm-t').textContent=s.title;ge('stm-dt').textContent=fmtDate(s.date);ge('stm-cnt').textContent=s.content;
+  ge('stm-t').textContent=s.title;
+  ge('stm-dt').textContent=fmtDate(s.date);
+  // Render HTML content (rich text)
+  ge('stm-cnt').innerHTML=s.content||'';
   ge('stm-tags').innerHTML=(s.tags||[]).map(t=>`<span class="st-tag">${esc(t)}</span>`).join('');
-  const img=ge('stm-img');if(s.image){img.src=s.image;img.style.display='block';}else{img.style.display='none';}
+  const img=ge('stm-img');
+  if(s.image){img.src=s.image;img.style.display='block';}else{img.style.display='none';}
+  // Share links
+  const url=encodeURIComponent(location.href.split('#')[0]+'#stories');
+  const txt=encodeURIComponent(s.title+' — engrpanda');
+  ge('sh-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  ge('sh-tw').href=`https://twitter.com/intent/tweet?text=${txt}&url=${url}`;
+  ge('sh-wa').href=`https://wa.me/?text=${txt}%20${url}`;
   ge('st-modal').classList.add('show');document.body.style.overflow='hidden';
+}
+function copyStoryLink(){
+  const url=location.href.split('#')[0]+'#stories';
+  navigator.clipboard.writeText(url).then(()=>toast('🔗 Link copied!'));
 }
 function closeStM(){ge('st-modal').classList.remove('show');document.body.style.overflow='';}
 function renderAll(){renderHero();renderAbout();renderWID();renderProjects();renderSkills();renderTL();renderHobbies();renderStories();}
@@ -1161,12 +1342,12 @@ function cancelEdit(key){
   document.querySelectorAll('.adm-list-item.editing').forEach(el=>el.classList.remove('editing'));
 }
 function clearForm(key){
-  if(key==='projects'){['cpf-t','cpf-yr','cpf-em','cpf-desc','cpf-img','cpf-link','cpf-gh'].forEach(id=>{const e=ge(id);if(e)e.value='';});ge('cpf-feat').value='0';ge('cpf-status').value='';buildTagCheckboxes('cpf-tags-row',[]);}
+  if(key==='projects'){['cpf-t','cpf-yr','cpf-em','cpf-img','cpf-link','cpf-gh'].forEach(id=>{const e=ge(id);if(e)e.value='';});const ed=ge('cpf-editor');if(ed)ed.innerHTML='';ge('cpf-feat').value='0';ge('cpf-status').value='';buildTagCheckboxes('cpf-tags-row',[]);}
   else if(key==='whatIDo'){['wf-ico','wf-tag','wf-t','wf-d'].forEach(id=>{const e=ge(id);if(e)e.value='';});}
   else if(key==='skills'){['sf-n','sf-c'].forEach(id=>{const e=ge(id);if(e)e.value='';});ge('sf-lv').value=75;ge('sf-lv-val').textContent=75;}
   else if(key==='timeline'){['tf-yr','tf-t','tf-d'].forEach(id=>{const e=ge(id);if(e)e.value='';});ge('tf-type').value='project';}
   else if(key==='hobbies'){['hf-em','hf-n','hf-d'].forEach(id=>{const e=ge(id);if(e)e.value='';});}
-  else if(key==='stories'){['sf2-t','sf2-dt','sf2-tags','sf2-img','sf2-cnt'].forEach(id=>{const e=ge(id);if(e)e.value='';});const d=ge('sf2-dt');if(d)d.value=new Date().toISOString().split('T')[0];}
+  else if(key==='stories'){['sf2-t','sf2-dt','sf2-tags','sf2-img'].forEach(id=>{const e=ge(id);if(e)e.value='';});const ed=ge('sf2-editor');if(ed)ed.innerHTML='';const d=ge('sf2-dt');if(d)d.value=new Date().toISOString().split('T')[0];}
 }
 
 function buildTagCheckboxes(containerId,selected){
@@ -1215,7 +1396,8 @@ function editItem(key,i){
 
   if(key==='projects'){
     ge('cpf-t').value=item.title||'';ge('cpf-yr').value=item.year||'';ge('cpf-em').value=item.icon||'';
-    ge('cpf-desc').value=item.desc||'';ge('cpf-img').value=item.image||'';ge('cpf-link').value=item.link||'';ge('cpf-gh').value=item.github||'';
+    const cpfEd=ge('cpf-editor');if(cpfEd)cpfEd.innerHTML=item.desc||'';
+    ge('cpf-img').value=item.image||'';ge('cpf-link').value=item.link||'';ge('cpf-gh').value=item.github||'';
     ge('cpf-feat').value=item.featured?'1':'0';ge('cpf-status').value=item.status||'';
     buildTagCheckboxes('cpf-tags-row',item.tags||[]);
     setEditMode('projects','cpf',i,item.title);
@@ -1232,7 +1414,8 @@ function editItem(key,i){
     ge('hf-em').value=item.icon||'';ge('hf-n').value=item.name||'';ge('hf-d').value=item.desc||'';
     setEditMode('hobbies','hf',i,item.name);
   }else if(key==='stories'){
-    ge('sf2-t').value=item.title||'';ge('sf2-dt').value=item.date||'';ge('sf2-tags').value=(item.tags||[]).join(', ');ge('sf2-img').value=item.image||'';ge('sf2-cnt').value=item.content||'';
+    ge('sf2-t').value=item.title||'';ge('sf2-dt').value=item.date||'';ge('sf2-tags').value=(item.tags||[]).join(', ');ge('sf2-img').value=item.image||'';
+    const ed=ge('sf2-editor');if(ed)ed.innerHTML=item.content||'';
     setEditMode('stories','sf2',i,item.title);
   }
 }
@@ -1252,7 +1435,7 @@ function saveProfile(){
 
 function saveProject(){
   const t=ge('cpf-t').value.trim();if(!t)return toast('⚠️ Title required.',true);
-  const obj={id:ES.projects>=0?D.projects[ES.projects].id:'p'+Date.now(),title:t,year:ge('cpf-yr').value.trim()||''+new Date().getFullYear(),icon:ge('cpf-em').value.trim()||'📦',desc:ge('cpf-desc').value.trim(),image:ge('cpf-img').value.trim(),link:ge('cpf-link').value.trim(),github:ge('cpf-gh').value.trim(),tags:getSelectedTags('cpf-tags-row'),featured:ge('cpf-feat').value==='1',status:ge('cpf-status').value};
+  const obj={id:ES.projects>=0?D.projects[ES.projects].id:'p'+Date.now(),title:t,year:ge('cpf-yr').value.trim()||''+new Date().getFullYear(),icon:ge('cpf-em').value.trim()||'📦',desc:(ge('cpf-editor').innerHTML||'').trim(),image:ge('cpf-img').value.trim(),link:ge('cpf-link').value.trim(),github:ge('cpf-gh').value.trim(),tags:getSelectedTags('cpf-tags-row'),featured:ge('cpf-feat').value==='1',status:ge('cpf-status').value};
   if(ES.projects>=0){D.projects[ES.projects]=obj;cancelEdit('projects');toast('✅ Project updated!');}
   else{D.projects.unshift(obj);clearForm('projects');}
   sD(D);admList('cp-adm-list',D.projects,x=>`${x.icon||'📦'} ${x.title} (${x.year})`,'projects');renderProjects();renderWID();if(ES.projects<0)toast('✅ Project added!');
@@ -1287,7 +1470,10 @@ function saveHobby(){
   sD(D);admList('hb-adm-list',D.hobbies,x=>`${x.icon} ${x.name}`,'hobbies');renderHobbies();
 }
 function saveStory(){
-  const t=ge('sf2-t').value.trim(),cnt=ge('sf2-cnt').value.trim();if(!t||!cnt)return toast('⚠️ Title and content required.',true);
+  const t=ge('sf2-t').value.trim();
+  const cnt=ge('sf2-editor').innerHTML.trim();
+  const stripped=ge('sf2-editor').innerText.trim();
+  if(!t||!stripped)return toast('⚠️ Title and content required.',true);
   const obj={id:ES.stories>=0?D.stories[ES.stories].id:'s'+Date.now(),title:t,date:ge('sf2-dt').value||new Date().toISOString().split('T')[0],content:cnt,image:ge('sf2-img').value.trim(),tags:ge('sf2-tags').value.trim().split(',').map(s=>s.trim()).filter(Boolean)};
   if(ES.stories>=0){D.stories[ES.stories]=obj;cancelEdit('stories');toast('✅ Story updated!');}
   else{D.stories.unshift(obj);clearForm('stories');toast('✅ Story published!');}
@@ -1296,7 +1482,34 @@ function saveStory(){
 
 ge('adm-login').addEventListener('click',e=>{if(e.target===ge('adm-login'))closeLgn();});
 ge('st-modal').addEventListener('click',e=>{if(e.target===ge('st-modal'))closeStM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeStM();closeLgn();closeAdm();closeMobNav();}});
+ge('proj-modal').addEventListener('click',e=>{if(e.target===ge('proj-modal'))closeProjM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeStM();closeLgn();closeAdm();closeMobNav();closeProjM();}});
+
+// ===== RICH TEXT EDITOR =====
+function rteCmd(cmd,val=null){
+  const ed=ge('sf2-editor');if(!ed)return;
+  ed.focus();
+  if(val){document.execCommand(cmd,false,val);}
+  else{document.execCommand(cmd,false,null);}
+}
+function rteFontSize(px){
+  const ed=ge('sf2-editor');if(!ed)return;ed.focus();
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount>0&&!sel.isCollapsed){const range=sel.getRangeAt(0);const span=document.createElement('span');span.style.fontSize=px;try{range.surroundContents(span);}catch(e){document.execCommand('fontSize',false,'3');}}
+}
+function rteLink(){const url=prompt('Enter URL:','https://');if(url)rteCmd('createLink',url);}
+function rteImg(){const url=prompt('Enter image URL:','https://');if(url)rteCmd('insertImage',url);}
+// Project description editor
+function rteCmd2(cmd,val=null){
+  const ed=ge('cpf-editor');if(!ed)return;ed.focus();
+  if(val){document.execCommand(cmd,false,val);}else{document.execCommand(cmd,false,null);}
+}
+function rteFontSize2(px){
+  const ed=ge('cpf-editor');if(!ed)return;ed.focus();
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount>0&&!sel.isCollapsed){const range=sel.getRangeAt(0);const span=document.createElement('span');span.style.fontSize=px;try{range.surroundContents(span);}catch(e){document.execCommand('fontSize',false,'3');}}
+}
+function rteLink2(){const url=prompt('Enter URL:','https://');if(url)rteCmd2('createLink',url);}
 
 // ===== GITHUB SYNC =====
 const GH_SK='ep_gh_cfg';
