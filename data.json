@@ -58,6 +58,18 @@
       "tag": "raspberry-pi",
       "title": "Raspberry Pi",
       "desc": "Raspberry Pi Projects"
+    },
+    {
+      "icon": "fa-star",
+      "tag": "arduino",
+      "title": "Arduino",
+      "desc": "Arduino Projects"
+    },
+    {
+      "icon": "fa-star",
+      "tag": "esp",
+      "title": "ESP",
+      "desc": "ESP8266/ESP32"
     }
   ],
   "projects": [
@@ -73,7 +85,9 @@
       "tags": [
         "robotics",
         "mobile",
-        "iot"
+        "iot",
+        "arduino",
+        "esp"
       ],
       "featured": false,
       "status": ""
@@ -105,7 +119,8 @@
       "github": "https://github.com/engrpanda/Spongebot",
       "tags": [
         "robotics",
-        "mobile"
+        "mobile",
+        "arduino"
       ],
       "featured": false,
       "status": ""
@@ -151,7 +166,8 @@
       "github": "https://github.com/engrpanda/Wireless-IR-Temperature-Scanner",
       "tags": [
         "mobile",
-        "iot"
+        "iot",
+        "arduino"
       ],
       "featured": false,
       "status": ""
@@ -168,6 +184,19 @@
       "tags": [
         "mobile"
       ],
+      "featured": false,
+      "status": ""
+    },
+    {
+      "id": "p1779617426938",
+      "title": "Arduino Piano With Manual & 7 Preset Songs",
+      "year": "2018",
+      "icon": "📦",
+      "desc": "<h3 class=\"text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold\">Arduino Piano With Manual &amp; 7 Preset Songs</h3>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\">A <strong>dual-mode electronic piano</strong> built with Arduino, featuring a 7-key manual playable keyboard and a preset song player with 7 built-in songs, all displayed on an LCD screen. Published as a full step-by-step tutorial on <strong>Instructables</strong>.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Overview</h4>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\">This project turns a handful of pushbuttons and a passive buzzer into a fully functional mini piano — with two distinct operating modes. In Manual Mode, each of the 7 buttons plays a musical note, letting you play freely by ear. Switch over to Preset Mode and the piano becomes a song player, cycling through 7 pre-programmed songs with a single button press. An LCD display shows the current mode and active song, giving the build a clean, finished feel beyond a bare breadboard prototype.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Key Features</h4>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>🎹 7-Key Manual Piano Mode</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Seven pushbuttons mapped to the seven musical notes (Do–Re–Mi–Fa–Sol–La–Si / C–D–E–F–G–A–B). Press any key and the buzzer plays the corresponding frequency in real time, functioning as a fully playable mini keyboard.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>🎵 7 Preset Songs Mode</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;A dedicated mode button switches the device into Preset Mode, disabling manual play and enabling a song menu. Each subsequent press of the mode button cycles through 7 pre-programmed songs that play automatically — full melodies encoded note-by-note in the firmware.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>🖥️ LCD Display Interface</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;A 16×2 LCD screen displays the current operating mode and the active preset song title, giving real-time feedback and making the device easy to navigate without needing to count button presses.</p>\n<p class=\"font-claude-response-body break-words whitespace-normal leading-[1.7]\"><strong>📖 Published on Instructables</strong>\n&nbsp;&nbsp;&nbsp;&nbsp;Documented as a complete 7-step tutorial with wiring diagrams, circuit schematics, and full source code — making it fully reproducible by the maker community.</p>\n<hr class=\"border-border-200 border-t-0.5 my-3 mx-1.5\">\n<h4 class=\"text-text-100 mt-2 -mb-1 text-base font-bold\">Tech Stack</h4>\n<div class=\"overflow-x-auto w-full px-2 mb-6\"><table class=\"min-w-full border-collapse text-sm leading-[1.7] whitespace-normal\"><thead class=\"text-left\"><tr><th scope=\"col\" class=\"text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold\">Category</th><th scope=\"col\" class=\"text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold\">Details</th></tr></thead><tbody><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Microcontroller</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Arduino</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Output</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Passive Buzzer</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Display</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">16×2 LCD</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Input</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">7× Pushbuttons (notes) + 1× Mode Button</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Firmware</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">C++ (Arduino IDE · <code class=\"bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]\">pitches.h</code> library)</td></tr><tr><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Documentation</td><td class=\"border-b-0.5 border-border-300/30 py-2 pr-4 align-top\">Instructables (7-step tutorial)</td></tr></tbody></table></div>",
+      "image": "https://content.instructables.com/F4S/C1PT/JN4VFQ0O/F4SC1PTJN4VFQ0O.png?frame=true&width=1024&height=1024&fit=bounds",
+      "link": "https://www.instructables.com/Manual-Piano-W-Presets-Songs-Using-Arduino/",
+      "github": "",
+      "tags": [],
       "featured": false,
       "status": ""
     }
