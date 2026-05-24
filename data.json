@@ -257,46 +257,88 @@
   ],
   "timeline": [
     {
-      "year": "2025",
-      "title": "New Play Store App Released",
-      "desc": "Launched a brand new Android app on Google Play. More details dropping soon.",
-      "type": "achievement"
-    },
-    {
-      "year": "2024",
-      "title": "QR Attendance System",
-      "desc": "Built a QR-based attendance system — Android app, NetSuite printing integration, real-time parent notifications.",
+      "year": "2026",
+      "title": "Aero — U-Robot Link",
+      "desc": "A universal Android robot controller app published on the Google Play Store, supporting Bluetooth Classic, BLE, WiFi, and LEGO MINDSTORMS — with 10 control modes including joystick, tilt, gamepad, voice, IoT dashboard, and live camera stream.",
       "type": "project"
     },
     {
-      "year": "2024",
-      "title": "Web & PC App Development",
-      "desc": "Built full-stack websites for clients (Vercel + Supabase) and Windows desktop apps (Visual Studio) including macro and user form automation.",
+      "year": "2026",
+      "title": "QR-SMS Attendance System",
+      "desc": "A desktop attendance management application built with C# and Windows Forms, featuring real-time QR code scanning via webcam, student database integration from Excel, automated SMS notifications via Bluetooth webhook, and CSV attendance logging.",
       "type": "project"
     },
     {
       "year": "2023",
-      "title": "8+ Years Engineering",
-      "desc": "Continued professional growth — deep-diving embedded systems, robotics, and expanding into web and PC software.",
+      "title": "Robotics Specialist — Evolution Design E3000 Inc. (Orionstar Robotics)",
+      "desc": "Develops Android mobile applications for Orionstar industrial robots, designs and implements performance upgrades, integrates robots with advanced industrial technologies, organizes robotics exhibitions at industry events, and performs troubleshooting and repairs on robotics components.",
       "type": "work"
     },
     {
       "year": "2022",
-      "title": "SpongeBot & Android Apps",
-      "desc": "Built SpongeBot robot and released QR Scanner, BBQniBBM, and Lego Controller on Google Play.",
-      "type": "achievement"
+      "title": "Spongebot",
+      "desc": "A SpongeBob SquarePants-themed Arduino robot built as a personal gift, controlled wirelessly via a custom-built Android app over Bluetooth Classic. Includes a character-accurate physical enclosure, custom firmware, and a Fritzing circuit diagram.",
+      "type": "project"
     },
     {
       "year": "2021",
-      "title": "Robotics Deep Dive",
-      "desc": "Built LEGO-inspired and ESP32-based robots. Explored kinematics and Bluetooth control.",
+      "title": "Portable RetroPie Mini Arcade",
+      "desc": "A handheld retro gaming console built from scratch using a Raspberry Pi 4, a 7-inch capacitive touchscreen, built-in speaker, and a custom acrylic enclosure. Runs RetroPie on a 64GB SD card. 3D-printable STL files published on Thingiverse.",
+      "type": "project"
+    },
+    {
+      "year": "2021",
+      "title": "QR Scanner Maker Plus Ultra",
+      "desc": "A 3-in-1 Android QR and barcode utility app published on the Google Play Store — real-time camera scanning, gallery image QR reading, and QR code generation. Two of three features work fully offline.",
       "type": "project"
     },
     {
       "year": "2020",
-      "title": "First Projects Documented",
-      "desc": "Started documenting electronics projects during COVID: ArduBT, temperature sensors, WiFi projects.",
+      "title": "WiFi Default Password Plus ULTRA",
+      "desc": "An Android utility app published on the Google Play Store that generates factory default passwords for common Philippine ISP routers (PLDT, HomeBro) using SSID and MAC-address-based algorithms. Supports 8 router types across 6 generation methods.",
       "type": "project"
+    },
+    {
+      "year": "2020",
+      "title": "Wireless IR Temperature Scanner",
+      "desc": "A contactless Bluetooth temperature scanner built with Arduino and an MLX90614 IR sensor, transmitting live readings up to 9 meters to a custom Android app. Published on Hackster.io with over 11,000 views and featured on Instructables.",
+      "type": "project"
+    },
+    {
+      "year": "2018",
+      "title": "Arduino Piano With Manual & 7 Preset Songs",
+      "desc": "A dual-mode electronic piano built with Arduino — 7 pushbutton keys for free play and a dedicated mode button to cycle through 7 pre-programmed songs. Features a 16×2 LCD display for mode and song feedback. Published as a full tutorial on Instructables.",
+      "type": "project"
+    },
+    {
+      "year": "2017",
+      "title": "Robotics Coach — ACE Electronic Technology Co., Ltd. (Abilix Robotics)",
+      "desc": "Designed and developed robotics projects and models for educational use, optimized code for Abilix robots, coached students for robotics competitions, organized exhibits at events and schools, and tested electronics hardware including microcontrollers, shields, and modules.",
+      "type": "work"
+    },
+    {
+      "year": "2017",
+      "title": "Licensed Electronics Engineer — PRC",
+      "desc": "Passed the Electronics Engineer Licensure Examination administered by the Professional Regulation Commission of the Philippines.",
+      "type": "achievement"
+    },
+    {
+      "year": "2017",
+      "title": "Licensed Electronics Technician — PRC",
+      "desc": "Passed the Electronics Technician Licensure Examination administered by the Professional Regulation Commission of the Philippines.",
+      "type": "achievement"
+    },
+    {
+      "year": "2016",
+      "title": "BS Electronics Engineering — Graduated",
+      "desc": "Completed Bachelor of Science in Electronics Engineering at Iloilo Science and Technology University,  Iloilo City.",
+      "type": "learning"
+    },
+    {
+      "year": "2021",
+      "title": "BS Electronics Engineering",
+      "desc": "Began Bachelor of Science in Electronics Engineering at  Iloilo Science and Technology University, La Paz, Iloilo City, Philippines.",
+      "type": "learning"
     }
   ],
   "hobbies": [
@@ -321,14 +363,19 @@
       "desc": "Setting up retro gaming consoles with Raspberry Pi — nostalgia hits different."
     },
     {
-      "name": "Crypto & NFT",
-      "icon": "💎",
-      "desc": "Exploring blockchain technology, DeFi, and the world of digital assets."
-    },
-    {
       "name": "Open Source",
       "icon": "🌐",
       "desc": "Contributing to and learning from the open source community on GitHub."
+    },
+    {
+      "icon": "🎸",
+      "name": "Guitar",
+      "desc": "Playing Guitar"
+    },
+    {
+      "icon": "🤖",
+      "name": "Robots",
+      "desc": "Building Robots"
     }
   ],
   "stories": []
