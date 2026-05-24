@@ -1255,10 +1255,22 @@ function renderGH(user,repos,stars,pinned=[]){
   }).join('');observe();
 }
 async function fetchGH(){
-  const u=D.profile.github||'engrpanda';const ck=`gh_c_${u}`;
-  try{const c=localStorage.getItem(ck);if(c){const cd=JSON.parse(c);if(Date.now()-cd.ts<3600000){renderGH(cd.user,cd.repos,cd.stars,cd.pinned||[]);return;}}}catch(e){}
+  const u=D.profile.github||'engrpanda';
+  const ck=`gh_c_${u}`;
+  // Load pinned list from saved config
+  const cfg=JSON.parse(localStorage.getItem(GH_SK)||'{}');
+  const pinned=(cfg.pinned||[]).map(s=>s.toLowerCase().trim()).filter(Boolean);
   try{
-    // Fetch user + all repos sorted by stars
+    const c=localStorage.getItem(ck);
+    if(c){
+      const cd=JSON.parse(c);
+      if(Date.now()-cd.ts<3600000){
+        renderGH(cd.user,cd.repos,cd.stars,pinned);
+        return;
+      }
+    }
+  }catch(e){}
+  try{
     const[ur,rr]=await Promise.all([
       fetch(`https://api.github.com/users/${u}`),
       fetch(`https://api.github.com/users/${u}/repos?sort=stars&per_page=30&type=owner`)
@@ -1266,21 +1278,11 @@ async function fetchGH(){
     if(!ur.ok)throw new Error('API');
     const user=await ur.json(),repos=await rr.json();
     let stars=0;repos.forEach(r=>stars+=r.stargazers_count||0);
-    // Try to get pinned repos via GraphQL (no auth needed for public)
-    let pinned=[];
-    try{
-      const gql=await fetch('https://api.github.com/graphql',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'bearer '},
-        body:JSON.stringify({query:`{user(login:"${u}"){pinnedItems(first:6,types:REPOSITORY){nodes{...on Repository{name}}}}}`})
-      });
-      // GraphQL needs auth — fallback: parse pinned from profile page isn't possible
-      // So we just use stars sort without pinned
-    }catch(e){}
-    localStorage.setItem(ck,JSON.stringify({user,repos,stars,pinned,ts:Date.now()}));
+    localStorage.setItem(ck,JSON.stringify({user,repos,stars,ts:Date.now()}));
     renderGH(user,repos,stars,pinned);
   }catch(e){
-    const g=ge('proj-grid');if(g)g.innerHTML=`<div class="gh-loading"><i class="fa-solid fa-triangle-exclamation" style="font-size:20px;color:#f59e0b;"></i><p style="margin-top:8px;">Could not load repos. <a href="https://github.com/${u}" target="_blank" style="color:var(--a);">View on GitHub →</a></p></div>`;
+    const g=ge('proj-grid');
+    if(g)g.innerHTML=`<div class="gh-loading"><i class="fa-solid fa-triangle-exclamation" style="font-size:20px;color:#f59e0b;"></i><p style="margin-top:8px;">Could not load repos. <a href="https://github.com/${u}" target="_blank" style="color:var(--a);">View on GitHub →</a></p></div>`;
   }
 }
 function renderTL(){
@@ -1772,15 +1774,20 @@ function ghLoadConfig(){
 }
 function ghSaveToken(){
   const pinned=ge('gh-pinned').value.trim().split(',').map(s=>s.trim()).filter(Boolean);
-  const cfg={token:ge('gh-token').value.trim(),owner:ge('gh-owner').value.trim(),repo:ge('gh-repo').value.trim(),branch:ge('gh-branch').value.trim()||'main',pinned};
+  const cfg={
+    token:ge('gh-token').value.trim(),
+    owner:ge('gh-owner').value.trim()||D.profile.github||'engrpanda',
+    repo:ge('gh-repo').value.trim(),
+    branch:ge('gh-branch').value.trim()||'main',
+    pinned
+  };
   if(!cfg.token)return toast('⚠️ Enter a token first.',true);
-  const existing=JSON.parse(localStorage.getItem(GH_SK)||'{}');
-  localStorage.setItem(GH_SK,JSON.stringify({...existing,...cfg}));
-  // Clear GitHub cache so it reloads with new pinned order
-  const u=cfg.owner||D.profile.github||'engrpanda';
+  localStorage.setItem(GH_SK,JSON.stringify(cfg));
+  // Clear GitHub cache so stars + pinned reloads fresh
+  const u=cfg.owner;
   localStorage.removeItem(`gh_c_${u}`);
   fetchGH();
-  toast('✅ Token & pinned repos saved.');
+  toast('✅ Saved! Refreshing repos...');
 }
 function ghStatus(msg,ok=true,loading=false){
   const el=ge('gh-sync-status');if(!el)return;
