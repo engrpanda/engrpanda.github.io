@@ -331,6 +331,11 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 .adm-list-item{background:rgba(255,255,255,.03);border:1px solid var(--b);border-radius:9px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;transition:var(--ease)}
 .adm-list-item:hover{border-color:rgba(var(--ar),.2)}
 .adm-list-item.editing{border-color:var(--a2);background:rgba(var(--a2r),.05)}
+.adm-list-item.dragging{opacity:.4;border-color:var(--a);background:rgba(var(--ar),.08)}
+.adm-list-item.drag-over{border-color:var(--a);box-shadow:0 0 0 2px rgba(var(--ar),.25)}
+.drag-handle{cursor:grab;color:var(--t3);padding:2px 4px;font-size:13px;flex-shrink:0;display:flex;align-items:center;transition:var(--ease)}
+.drag-handle:hover{color:var(--a)}
+.drag-handle:active{cursor:grabbing}
 .adm-it-info{flex:1;min-width:0}
 .adm-it-t{font-weight:600;font-size:13px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .adm-it-s{font-size:11px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1509,17 +1514,54 @@ function fillAdmForms(){
 function admList(cid,arr,lFn,key){
   const c=ge(cid);if(!c)return;
   if(!arr.length){c.innerHTML=`<div style="text-align:center;padding:16px;color:var(--t3);font-size:12px;">No items yet.</div>`;return;}
+  const draggable=key==='projects';
   c.innerHTML=arr.map((x,i)=>`
-    <div class="adm-list-item" id="li-${key}-${i}">
+    <div class="adm-list-item" id="li-${key}-${i}" ${draggable?`draggable="true" data-idx="${i}"`:''}">
+      ${draggable?`<div class="drag-handle" title="Drag to reorder"><i class="fa-solid fa-grip-vertical"></i></div>`:''}
       <div class="adm-it-info">
         <div class="adm-it-t">${esc(lFn(x))}</div>
-        ${x.desc||x.content?`<div class="adm-it-s">${esc((x.desc||x.content||'').substring(0,60))}…</div>`:''}
+        ${x.desc||x.content?`<div class="adm-it-s">${esc((x.desc||x.content||'').replace(/<[^>]+>/g,' ').substring(0,60))}…</div>`:''}
       </div>
       <div class="adm-it-acts">
         <button class="adm-edit" onclick="editItem('${key}',${i})" title="Edit"><i class="fa-solid fa-pen"></i></button>
         <button class="adm-del" onclick="delItem('${key}',${i})" title="Delete"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>`).join('');
+  if(draggable)initDragSort(c,key);
+}
+
+function initDragSort(container,key){
+  let dragIdx=null;
+  container.querySelectorAll('.adm-list-item').forEach(item=>{
+    item.addEventListener('dragstart',e=>{
+      dragIdx=parseInt(item.dataset.idx);
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+    });
+    item.addEventListener('dragend',()=>{
+      item.classList.remove('dragging');
+      container.querySelectorAll('.adm-list-item').forEach(i=>i.classList.remove('drag-over'));
+    });
+    item.addEventListener('dragover',e=>{
+      e.preventDefault();e.dataTransfer.dropEffect='move';
+      container.querySelectorAll('.adm-list-item').forEach(i=>i.classList.remove('drag-over'));
+      item.classList.add('drag-over');
+    });
+    item.addEventListener('drop',e=>{
+      e.preventDefault();
+      const dropIdx=parseInt(item.dataset.idx);
+      if(dragIdx===null||dragIdx===dropIdx)return;
+      // Reorder array
+      const moved=D[key].splice(dragIdx,1)[0];
+      D[key].splice(dropIdx,0,moved);
+      sD(D);
+      // Cancel edit mode if active
+      if(ES[key]>=0)cancelEdit(key);
+      admList(container.id,D[key],x=>key==='projects'?`${x.icon||'📦'} ${x.title} (${x.year})`:x.title||x.name,key);
+      renderProjects();
+      toast('↕️ Order saved!');
+    });
+  });
 }
 
 function editItem(key,i){
