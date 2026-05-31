@@ -216,7 +216,7 @@
     },
     {
       "name": "PCB Design",
-      "level": 65,
+      "level": 70,
       "cat": "Hardware"
     },
     {
@@ -226,7 +226,7 @@
     },
     {
       "name": "Python",
-      "level": 75,
+      "level": 60,
       "cat": "Software"
     },
     {
@@ -235,24 +235,19 @@
       "cat": "Software"
     },
     {
-      "name": "Linux / Bash",
-      "level": 80,
+      "name": "Linux",
+      "level": 50,
       "cat": "Software"
     },
     {
-      "name": "Vercel + Supabase",
-      "level": 72,
+      "name": "Website Front end (JavaScript, Html, Css)",
+      "level": 50,
       "cat": "Web"
     },
     {
-      "name": "3D Modeling",
-      "level": 60,
-      "cat": "Design"
-    },
-    {
-      "name": "Git / GitHub",
-      "level": 82,
-      "cat": "Tools"
+      "name": "Website Backend/Database (Supabase, Vercel, GitHub)",
+      "level": 50,
+      "cat": "Web"
     }
   ],
   "timeline": [
