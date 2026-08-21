@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/53995355?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
@@ -22,7 +22,7 @@
   --r:12px;--rl:20px;--nav:64px;
   --ease:0.3s cubic-bezier(0.4,0,0.2,1);
   --glow:0 0 30px rgba(0,200,255,0.15);
-  --fd:'Syne',sans-serif;--fb:'Plus Jakarta Sans',sans-serif;--fm:'JetBrains Mono',monospace;
+  --fd:'Syne',sans-serif;--fb:'Plus Jakarta Sans',sans-serif;--fm:'JetBrains Mono',monospace;--ft:'Space Grotesk',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -171,7 +171,7 @@ input,textarea,select{font-family:inherit}
 .cp-feat-badge{font-family:var(--fm);font-size:9px;font-weight:700;color:var(--bg);background:linear-gradient(90deg,var(--a),var(--a2));padding:2px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:1px}
 .cp-wip{font-family:var(--fm);font-size:9px;font-weight:700;color:#f59e0b;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:2px 8px;border-radius:5px;text-transform:uppercase}
 .cp-soon{font-family:var(--fm);font-size:9px;font-weight:700;color:var(--a2);background:rgba(var(--a2r),.1);border:1px solid rgba(var(--a2r),.3);padding:2px 8px;border-radius:5px;text-transform:uppercase}
-.cp-title{font-family:var(--fd);font-size:16px;font-weight:800;margin-bottom:7px;line-height:1.2}
+.cp-title{font-family:var(--ft);font-size:16px;font-weight:700;margin-bottom:7px;line-height:1.3;letter-spacing:-0.01em}
 .cp-card.featured .cp-title{font-size:20px}
 .cp-desc{font-size:13px;color:var(--t2);line-height:1.65;flex:1;margin-bottom:14px}
 .cp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
@@ -436,16 +436,16 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   .wid-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   /* Projects — compact horizontal card on mobile */
   .cp-grid{grid-template-columns:1fr;gap:12px;margin-bottom:36px}
-  .cp-card{flex-direction:row;max-height:120px}
+  .cp-card{flex-direction:row;max-height:140px}
   .cp-card.featured{grid-column:span 1;flex-direction:column;max-height:none}
   .cp-card-top{width:3px;height:auto;background:linear-gradient(180deg,var(--a),var(--a2))}
   .cp-card.featured .cp-card-top{width:auto;height:3px;background:linear-gradient(90deg,var(--a),var(--a2))}
-  .cp-img,.cp-img-ph{width:110px;height:120px;flex-shrink:0}
+  .cp-img,.cp-img-ph{width:110px;height:140px;flex-shrink:0}
   .cp-card.featured .cp-img,.cp-card.featured .cp-img-ph{width:100%;height:160px}
   .cp-img-ph{font-size:32px}
   .cp-body{padding:12px;overflow:hidden}
   .cp-card.featured .cp-body{padding:14px}
-  .cp-title{font-size:13px;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cp-title{font-size:13px;line-height:1.35;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
   .cp-desc{font-size:11px;margin-bottom:6px;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
   .cp-tags{margin-bottom:0;gap:3px}
   .cp-tag{font-size:9px;padding:2px 6px}
@@ -510,7 +510,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
       <div class="h-eye"><div class="h-line"></div><span class="h-et" id="h-tagline">just a simple guy who loves panda and building stuff</span></div>
       <div class="h-name" id="h-name">John Rey<br><span class="ac">Cabatana</span></div>
       <div class="h-role-w"><div class="h-role" id="h-role">Electronics Engineer<span class="cursor"></span></div></div>
-      <div class="h-bio" id="h-bio">Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Quezon City, PH. 🐼</div>
+      <div class="h-bio" id="h-bio">Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼</div>
       <div class="h-acts">
         <a href="#projects" class="btn-p"><i class="fa-solid fa-layer-group"></i> View Projects</a>
         <a href="#contact" class="btn-o"><i class="fa-regular fa-envelope"></i> Get in Touch</a>
@@ -551,8 +551,8 @@ footer{border-top:1px solid var(--b);padding:28px 0}
         <div class="ab-dets rv d2">
           <div class="ab-det"><label>Name</label><strong id="ab-name">John Rey Cabatana</strong></div>
           <div class="ab-det"><label>Title</label><strong id="ab-title">ECE, ECT</strong></div>
-          <div class="ab-det"><label>Location</label><strong>Quezon City, PH 🇵🇭</strong></div>
-          <div class="ab-det"><label>Email</label><strong id="ab-email">engrpandaece@gmail.com</strong></div>
+          <div class="ab-det"><label>Location</label><strong>Manila City 🇵🇭</strong></div>
+          <div class="ab-det"><label>Email</label><strong id="ab-email">support.engrpanda@gmail.com</strong></div>
         </div>
         <div class="ab-links rv d3">
           <a href="https://github.com/engrpanda" target="_blank" class="ab-lk"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -655,7 +655,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
         <h2 class="sec-h">Let's <em>Connect</em></h2>
         <p style="color:var(--t2);margin-top:12px;line-height:1.8;font-size:15px;">Have a project idea, collaboration, or just want to chat about robots and pandas? Drop me a line.</p>
         <div class="ct-lks">
-          <a href="mailto:engrpandaece@gmail.com" class="ct-lk"><i class="fa-regular fa-envelope"></i> engrpandaece@gmail.com</a>
+          <a href="mailto:support.engrpanda@gmail.com" class="ct-lk"><i class="fa-regular fa-envelope"></i> support.engrpanda@gmail.com</a>
           <a href="https://github.com/engrpanda" target="_blank" class="ct-lk"><i class="fa-brands fa-github"></i> github.com/engrpanda</a>
           <a href="https://twitter.com/engrjanleepanda" target="_blank" class="ct-lk"><i class="fa-brands fa-x-twitter"></i> @engrjanleepanda</a>
           <a href="https://www.hackster.io/engrpandaece" target="_blank" class="ct-lk"><i class="fa-solid fa-microchip"></i> hackster.io/engrpandaece</a>
@@ -1005,7 +1005,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
     <div class="stm-hdr">
       <div style="flex:1;min-width:0;">
         <div class="cp-meta" style="margin-bottom:8px;" id="pm-meta"></div>
-        <h3 style="font-family:var(--fd);font-size:22px;font-weight:800;line-height:1.2;" id="pm-title"></h3>
+        <h3 style="font-family:var(--ft);font-size:22px;font-weight:700;line-height:1.3;letter-spacing:-0.01em;overflow-wrap:anywhere;" id="pm-title"></h3>
       </div>
       <button class="stm-x" onclick="closeProjM()"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -1057,7 +1057,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 <script>
 // ===== DEFAULT DATA =====
 const DD={
-  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"just a simple guy who loves panda and building stuff",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Quezon City, PH. 🐼",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"engrpandaece@gmail.com",github:"engrpanda"},
+  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"just a simple guy who loves panda and building stuff",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"support.engrpanda@gmail.com",github:"engrpanda"},
   whatIDo:[
     {icon:"fa-microchip",tag:"embedded",title:"Embedded Systems",desc:"Arduino, ESP32, Raspberry Pi — designing circuits and writing firmware from scratch."},
     {icon:"fa-robot",tag:"robotics",title:"Robotics",desc:"Educational robots, service robots, cleaning robots and more — from mechanical design to full control systems."},
