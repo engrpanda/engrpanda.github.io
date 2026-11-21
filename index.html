@@ -642,6 +642,76 @@ footer{border-top:1px solid var(--b)}
   .cp-card,.tl-item,.wid-card{break-inside:avoid}
   .sk-fill{background:#111!important}
 }
+
+/* ================= ROBOTICS / CIRCUIT FX ================= */
+#hc{-webkit-mask-image:linear-gradient(#000 65%,transparent);mask-image:linear-gradient(#000 65%,transparent)}
+.h-robot{position:absolute;right:max(2vw,calc((100vw - 1100px)/2 - 40px));top:calc(46% - 40px);transform:translateY(-50%);width:min(420px,34vw,52vh);z-index:1;pointer-events:none;opacity:0;animation:fu 1.2s ease forwards .8s}
+.h-robot svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 40px rgba(94,234,212,.15))}
+.h-robot .hr-dash{fill:none;stroke:rgba(94,234,212,.35);stroke-width:1.2;stroke-dasharray:2 10}
+.h-robot .hr-gear{fill:none;stroke:rgba(129,140,248,.35);stroke-width:16;stroke-dasharray:14 10.6}
+.h-robot .hr-ring{fill:none;stroke:rgba(129,140,248,.5);stroke-width:1.2}
+.h-robot .hr-ring2{fill:none;stroke:rgba(94,234,212,.45);stroke-width:1.2;stroke-dasharray:60 14 4 14}
+.h-robot .hr-pins{fill:none;stroke:rgba(94,234,212,.55);stroke-width:3;stroke-linecap:round}
+.h-robot .hr-flow{fill:none;stroke:url(#lg);stroke-width:2;stroke-linecap:round;stroke-dasharray:14 120;animation:hrflow 3.2s linear infinite}
+.h-robot .hr-chip{fill:rgba(10,14,23,.85);stroke:url(#lg);stroke-width:2}
+.h-robot .hr-die{fill:rgba(94,234,212,.06);stroke:rgba(94,234,212,.4);stroke-width:1}
+.h-robot .hr-eye circle{fill:#5eead4;animation:hrblink 4.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 6px #5eead4)}
+.h-robot .hr-eye path{stroke:#5eead4;stroke-width:3;stroke-linecap:round}
+.h-robot .hr-txt{font:600 10px 'JetBrains Mono',monospace;letter-spacing:.3em;fill:rgba(94,234,212,.8)}
+.hr-spin-a{animation:hrspin 60s linear infinite}.hr-spin-b{animation:hrspin 40s linear infinite reverse}.hr-spin-c{animation:hrspin 18s linear infinite}
+@keyframes hrspin{to{transform:rotate(360deg)}}
+@keyframes hrflow{to{stroke-dashoffset:-134}}
+@keyframes hrblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.h-stats{top:auto;bottom:34px;right:max(2vw,calc((100vw - 1100px)/2));transform:none;flex-direction:row;gap:34px;padding:16px 26px;z-index:2}
+@media(max-width:1100px){.h-robot{display:none}}
+@media(max-width:1280px){.h-robot{opacity:.55!important}}
+
+.ticker{overflow:hidden;border-block:1px solid var(--b);background:rgba(255,255,255,.02);position:relative;z-index:1}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.ticker-in{display:flex;width:max-content;animation:tick 45s linear infinite}
+.ticker span{font:500 12px 'JetBrains Mono',monospace;letter-spacing:.22em;color:var(--t2);padding:16px 28px;white-space:nowrap}
+.ticker span::before{content:'\25C6';color:var(--a);margin-right:28px;font-size:8px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* circuit-board section dividers with travelling pulse */
+.sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1100px,92%);height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(94,234,212,.28),transparent) 0 0/100% 1px no-repeat,linear-gradient(90deg,transparent,#5eead4,#818cf8,transparent) -240px 0/240px 2px no-repeat;animation:secpulse 6s linear infinite}
+@keyframes secpulse{to{background-position:0 0,calc(100% + 240px) 0}}
+.sec-alt{background-image:radial-gradient(rgba(94,234,212,.11) 1px,transparent 1.2px),linear-gradient(180deg,transparent,rgba(255,255,255,.02) 20%,rgba(255,255,255,.02) 80%,transparent);background-size:30px 30px,auto;-webkit-mask-image:linear-gradient(transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(transparent,#000 10%,#000 90%,transparent)}
+
+/* section tags look like silkscreen labels */
+.tag{font-family:var(--fm);border-radius:6px;letter-spacing:.2em;border-color:rgba(94,234,212,.25);background:rgba(94,234,212,.05)}
+.tag::before{border-radius:1px;width:7px;height:7px;background:var(--a);box-shadow:0 0 8px var(--a);animation:ledblink 2.4s ease-in-out infinite}
+@keyframes ledblink{0%,100%{opacity:1}50%{opacity:.35}}
+.sec-h::after{content:'';display:block;margin-top:14px;width:84px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--a2),transparent)}
+
+/* HUD corner brackets on cards */
+.cp-card,.hb-card,.tl-box,.ghs-card,.card,.gh-card{position:relative}
+.cp-card::after,.hb-card::after,.tl-box::after,.ghs-card::after,.card::after,.gh-card::after{content:'';position:absolute;inset:8px;pointer-events:none;opacity:0;transition:opacity .35s,inset .35s;z-index:3;
+  background:linear-gradient(var(--a),var(--a)) 0 0/14px 1.5px no-repeat,linear-gradient(var(--a),var(--a)) 0 0/1.5px 14px no-repeat,
+  linear-gradient(var(--a),var(--a)) 100% 0/14px 1.5px no-repeat,linear-gradient(var(--a),var(--a)) 100% 0/1.5px 14px no-repeat,
+  linear-gradient(var(--a),var(--a)) 0 100%/14px 1.5px no-repeat,linear-gradient(var(--a),var(--a)) 0 100%/1.5px 14px no-repeat,
+  linear-gradient(var(--a),var(--a)) 100% 100%/14px 1.5px no-repeat,linear-gradient(var(--a),var(--a)) 100% 100%/1.5px 14px no-repeat}
+.cp-card:hover::after,.hb-card:hover::after,.tl-box:hover::after,.ghs-card:hover::after,.card:hover::after,.gh-card:hover::after{opacity:.9;inset:6px}
+.wid-ico{position:relative}
+.wid-ico::after{content:'';position:absolute;inset:-6px;border-radius:18px;border:1px dashed rgba(94,234,212,.5);opacity:0;animation:hrspin 12s linear infinite;transition:opacity .3s}
+.wid-card:hover .wid-ico::after{opacity:1}
+/* scan line sweep over project cards */
+.cp-card:hover::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:4;background:linear-gradient(90deg,transparent,var(--a),transparent);box-shadow:0 0 14px var(--a);animation:scan 1.6s ease-in-out infinite}
+@keyframes scan{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+/* skill bars as power-meters */
+.sk-bar{background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 6px,transparent 6px 9px)}
+.sk-fill{-webkit-mask-image:repeating-linear-gradient(90deg,#000 0 6px,transparent 6px 9px);mask-image:repeating-linear-gradient(90deg,#000 0 6px,transparent 6px 9px);box-shadow:0 0 12px rgba(94,234,212,.5)}
+/* timeline nodes pulse like LEDs */
+.tl-dot.live{animation:ledpulse 2s ease-out infinite}
+@keyframes ledpulse{0%{box-shadow:0 0 0 0 rgba(129,140,248,.5)}100%{box-shadow:0 0 0 12px rgba(129,140,248,0)}}
+/* logo mark */
+.logo::before{content:'';display:inline-block;width:9px;height:9px;margin-right:9px;border-radius:2px;background:var(--grad);box-shadow:0 0 10px var(--a);animation:ledblink 2.4s ease-in-out infinite;vertical-align:1px}
+@media(prefers-reduced-motion:reduce){.ticker-in,.sec::before,.hr-spin-a,.hr-spin-b,.hr-spin-c,.hr-flow,.hr-eye circle,.tag::before,.logo::before{animation:none!important}}
+@media print{.h-robot,.ticker{display:none!important}.sec::before,.sec::after,.cp-card::after{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -687,12 +757,34 @@ footer{border-top:1px solid var(--b)}
         <span class="h-soc-lbl">Profiles</span>
         <a href="https://github.com/engrpanda" target="_blank" class="soc-ico" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/engrpanda/" target="_blank" rel="noopener" class="soc-ico" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://twitter.com/engrjanleepanda" target="_blank" class="soc-ico" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
         <a href="https://www.hackster.io/engrpandaece" target="_blank" class="soc-ico" title="Hackster"><i class="fa-solid fa-microchip"></i></a>
         <a href="https://play.google.com/store/apps/developer?id=engrpandaece" target="_blank" class="soc-ico" title="Google Play"><i class="fa-brands fa-google-play"></i></a>
         <a href="https://www.instructables.com/member/ECEPanda/" target="_blank" class="soc-ico" title="Instructables"><i class="fa-solid fa-wrench"></i></a>
       </div>
     </div>
+  </div>
+  <div class="h-robot" aria-hidden="true">
+    <svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5eead4" stop-opacity=".35"/><stop offset="1" stop-color="#5eead4" stop-opacity="0"/></radialGradient>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
+      </defs>
+      <circle cx="220" cy="220" r="210" fill="url(#rg)"/>
+      <g class="hr-spin-a" style="transform-origin:220px 220px"><circle cx="220" cy="220" r="196" class="hr-dash"/></g>
+      <g class="hr-spin-b" style="transform-origin:220px 220px"><circle cx="220" cy="220" r="150" class="hr-gear"/><circle cx="220" cy="220" r="136" class="hr-ring"/></g>
+      <g class="hr-spin-c" style="transform-origin:220px 220px"><circle cx="220" cy="220" r="104" class="hr-ring2"/><circle cx="220" cy="38" r="5" fill="#818cf8"/><circle cx="220" cy="402" r="4" fill="#5eead4"/></g>
+      <g class="hr-pins">
+        <path d="M182 150V100M205 150V80M235 150V80M258 150V100"/><path d="M182 290v50M205 290v70M235 290v70M258 290v50"/>
+        <path d="M150 182H100M150 205H80M150 235H80M150 258H100"/><path d="M290 182h50M290 205h70M290 235h70M290 258h50"/>
+      </g>
+      <g class="hr-flow">
+        <path d="M205 150V80H150V40"/><path d="M235 290v70h60v40"/><path d="M150 235H80v-60H40"/><path d="M290 205h70v60h40"/>
+      </g>
+      <rect x="150" y="150" width="140" height="140" rx="18" class="hr-chip"/>
+      <rect x="176" y="176" width="88" height="88" rx="10" class="hr-die"/>
+      <g class="hr-eye"><circle cx="205" cy="212" r="9"/><circle cx="235" cy="212" r="9"/><path d="M200 240q20 12 40 0" fill="none"/></g>
+      <text x="220" y="136" text-anchor="middle" class="hr-txt">CORE · ONLINE</text>
+    </svg>
   </div>
   <div class="h-scroll"><div class="h-scroll-line"></div><span>scroll</span></div>
   <div class="h-stats">
@@ -701,6 +793,8 @@ footer{border-top:1px solid var(--b)}
     <div class="h-stat"><div class="h-stat-n">8+</div><div class="h-stat-l">Yrs Exp</div></div>
   </div>
 </section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-in"><span>ARDUINO</span><span>ESP32</span><span>RASPBERRY PI</span><span>ROBOTICS</span><span>EMBEDDED C/C++</span><span>KOTLIN · ANDROID</span><span>C# · .NET</span><span>PCB DESIGN</span><span>IoT</span><span>BLUETOOTH · BLE · WiFi</span><span>ARDUINO</span><span>ESP32</span><span>RASPBERRY PI</span><span>ROBOTICS</span><span>EMBEDDED C/C++</span><span>KOTLIN · ANDROID</span><span>C# · .NET</span><span>PCB DESIGN</span><span>IoT</span><span>BLUETOOTH · BLE · WiFi</span></div></div>
 
 <section id="about" class="sec">
   <div class="wrap">
@@ -714,7 +808,7 @@ footer{border-top:1px solid var(--b)}
         <span class="tag">About Me</span>
         <h2 class="sec-h rv">The Guy Behind <em>engrpanda</em></h2>
         <div class="rv d1">
-          <p id="ab-p1">Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.</p>
+          <p id="ab-p1">Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.</p>
           <p id="ab-p2">Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.</p>
         </div>
         <div class="ab-dets rv d2">
@@ -847,7 +941,6 @@ footer{border-top:1px solid var(--b)}
           <a href="mailto:support.engrpanda@gmail.com" class="ct-lk"><i class="fa-regular fa-envelope"></i> support.engrpanda@gmail.com</a>
           <a href="https://github.com/engrpanda" target="_blank" class="ct-lk"><i class="fa-brands fa-github"></i> github.com/engrpanda</a>
           <a href="https://www.linkedin.com/in/engrpanda/" target="_blank" rel="noopener" class="ct-lk"><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/engrpanda</a>
-          <a href="https://twitter.com/engrjanleepanda" target="_blank" class="ct-lk"><i class="fa-brands fa-x-twitter"></i> @engrjanleepanda</a>
           <a href="https://www.hackster.io/engrpandaece" target="_blank" class="ct-lk"><i class="fa-solid fa-microchip"></i> hackster.io/engrpandaece</a>
         </div>
       </div>
@@ -863,7 +956,7 @@ footer{border-top:1px solid var(--b)}
             <div style="font-size:11px;color:var(--t3);margin-top:2px;">GitHub Repos</div>
           </div>
           <div class="card" style="text-align:center;">
-            <div style="font-family:var(--fd);font-size:24px;font-weight:800;color:var(--a2);">4+</div>
+            <div style="font-family:var(--fd);font-size:24px;font-weight:800;color:var(--a2);">8+</div>
             <div style="font-size:11px;color:var(--t3);margin-top:2px;">Years Exp</div>
           </div>
         </div>
@@ -1246,7 +1339,7 @@ footer{border-top:1px solid var(--b)}
 <script>
 // ===== DEFAULT DATA =====
 const DD={
-  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"Open to jobs & commissions",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Electronics engineer specializing in robotics, embedded systems, and Android/Windows application development. Based in Manila, Philippines.",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"support.engrpanda@gmail.com",github:"engrpanda"},
+  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"Open to jobs & commissions",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Electronics engineer specializing in robotics, embedded systems, and Android/Windows application development. Based in Manila, Philippines.",ab1:"Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"support.engrpanda@gmail.com",github:"engrpanda"},
   whatIDo:[
     {icon:"fa-microchip",tag:"embedded",title:"Embedded Systems",desc:"Arduino, ESP32, Raspberry Pi — designing circuits and writing firmware from scratch."},
     {icon:"fa-robot",tag:"robotics",title:"Robotics",desc:"Educational robots, service robots, cleaning robots and more — from mechanical design to full control systems."},
@@ -1649,19 +1742,87 @@ function renderAll(){renderHero();renderAbout();renderWID();renderProjects();ren
 
 // ===== CANVAS =====
 function initCanvas(){
-  const c=ge('hc');if(!c)return;const ctx=c.getContext('2d');let W,H,pts=[];
-  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;}
-  for(let i=0;i<50;i++)pts.push({x:0,y:0,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.6+.4,a:Math.random()*.4+.07});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    ctx.strokeStyle='rgba(0,200,255,0.03)';ctx.lineWidth=.5;
-    for(let x=0;x<=W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(let y=0;y<=H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,200,255,${p.a})`;ctx.fill();});
-    for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,200,255,${.05*(1-d/110)})`;ctx.lineWidth=.4;ctx.stroke();}}}
-    requestAnimationFrame(draw);
+  const c=ge('hc');if(!c)return;const ctx=c.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const G=30,DIRS=[[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]];
+  let W=0,H=0,traces=[],pulses=[],mx=-9999,my=-9999,run=true,last=0,raf=0;
+  const rnd=n=>Math.floor(Math.random()*n),cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+  function build(){
+    const dpr=Math.min(devicePixelRatio||1,2),r=c.parentElement.getBoundingClientRect();
+    W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cols=Math.floor(W/G),rows=Math.floor(H/G),n=Math.min(70,Math.round(W*H/16000));
+    traces=[];
+    for(let i=0;i<n;i++){
+      let x=rnd(cols+1),y=rnd(rows+1),a=rnd(8);const pts=[[x*G,y*G]];
+      const segs=3+rnd(4);
+      for(let s=0;s<segs;s++){
+        const len=2+rnd(8);x=cl(x+DIRS[a][0]*len,0,cols);y=cl(y+DIRS[a][1]*len,0,rows);
+        const p=pts[pts.length-1];if(p[0]===x*G&&p[1]===y*G)break;
+        pts.push([x*G,y*G]);a=(a+(Math.random()<.5?1:7)+(Math.random()<.25?(Math.random()<.5?1:7):0))%8;
+      }
+      if(pts.length<2)continue;
+      let tot=0;const cum=[0];
+      for(let k=1;k<pts.length;k++){tot+=Math.hypot(pts[k][0]-pts[k-1][0],pts[k][1]-pts[k-1][1]);cum.push(tot);}
+      traces.push({pts,cum,tot});
+    }
+    pulses=[];
+    const pn=Math.round(traces.length*.7);
+    for(let i=0;i<pn;i++)pulses.push(newPulse());
   }
-  window.addEventListener('resize',resize);resize();pts.forEach(p=>{p.x=Math.random()*W;p.y=Math.random()*H;});draw();
+  function newPulse(){
+    const t=traces[rnd(traces.length)];
+    return{t,d:Math.random()*t.tot,v:35+Math.random()*90,tail:50+Math.random()*60,hue:Math.random()<.7?'94,234,212':'129,140,248'};
+  }
+  function at(t,d){
+    let k=1;while(k<t.cum.length-1&&t.cum[k]<d)k++;
+    const s=(d-t.cum[k-1])/(t.cum[k]-t.cum[k-1]||1),a=t.pts[k-1],b=t.pts[k];
+    return[a[0]+(b[0]-a[0])*s,a[1]+(b[1]-a[1])*s];
+  }
+  function drawStatic(){
+    ctx.lineJoin='round';ctx.lineCap='round';
+    traces.forEach(t=>{
+      ctx.beginPath();t.pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));
+      ctx.strokeStyle='rgba(94,234,212,.09)';ctx.lineWidth=1.3;ctx.stroke();
+      [t.pts[0],t.pts[t.pts.length-1]].forEach(p=>{
+        ctx.beginPath();ctx.arc(p[0],p[1],3.2,0,6.283);ctx.strokeStyle='rgba(94,234,212,.28)';ctx.lineWidth=1;ctx.stroke();
+        ctx.beginPath();ctx.arc(p[0],p[1],1,0,6.283);ctx.fillStyle='rgba(94,234,212,.5)';ctx.fill();
+      });
+    });
+  }
+  function frame(ts){
+    raf=requestAnimationFrame(frame);if(!run)return;
+    const dt=Math.min(.05,(ts-last)/1000||.016);last=ts;
+    ctx.clearRect(0,0,W,H);
+    if(mx>-999){const g=ctx.createRadialGradient(mx,my,0,mx,my,220);g.addColorStop(0,'rgba(94,234,212,.10)');g.addColorStop(1,'rgba(94,234,212,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+    drawStatic();
+    ctx.globalCompositeOperation='lighter';
+    pulses.forEach((p,i)=>{
+      const near=Math.hypot(at(p.t,p.d)[0]-mx,at(p.t,p.d)[1]-my)<200;
+      p.d+=p.v*dt*(near?2.2:1);
+      if(p.d-p.tail>p.t.tot){pulses[i]=newPulse();pulses[i].d=0;return;}
+      const N=14;
+      for(let s=0;s<N;s++){
+        const d0=p.d-p.tail*s/N,d1=p.d-p.tail*(s+1)/N;
+        if(d0<0||d1>p.t.tot)continue;
+        const a=at(p.t,cl(d0,0,p.t.tot)),b=at(p.t,cl(d1,0,p.t.tot));
+        ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);
+        ctx.strokeStyle=`rgba(${p.hue},${(1-s/N)*(near?.95:.7)})`;ctx.lineWidth=2.2-s*.1;ctx.stroke();
+      }
+      if(p.d>=0&&p.d<=p.t.tot){
+        const h=at(p.t,p.d),g=ctx.createRadialGradient(h[0],h[1],0,h[0],h[1],9);
+        g.addColorStop(0,`rgba(${p.hue},.9)`);g.addColorStop(1,`rgba(${p.hue},0)`);
+        ctx.fillStyle=g;ctx.fillRect(h[0]-9,h[1]-9,18,18);
+      }
+    });
+    ctx.globalCompositeOperation='source-over';
+  }
+  build();
+  if(reduce){drawStatic();}else{raf=requestAnimationFrame(frame);}
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{build();if(reduce)drawStatic();},200);});
+  const hero=ge('home');
+  hero.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;},{passive:true});
+  hero.addEventListener('pointerleave',()=>{mx=my=-9999;});
+  new IntersectionObserver(es=>{run=es[0].isIntersecting;}).observe(hero);
 }
 
 // ===== SCROLL =====
