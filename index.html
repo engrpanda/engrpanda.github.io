@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>engrpanda — John Rey Cabatana</title>
-<meta name="description" content="Electronics Engineer, Maker, Robotics builder. John Rey Cabatana aka engrpanda.">
+<title>John Rey Cabatana — Electronics Engineer · Robotics & Embedded Systems</title>
+<meta name="description" content="John Rey Cabatana — Electronics Engineer (ECE, ECT) specializing in robotics, embedded systems, and Android/Windows application development. Manila, Philippines.">
 <meta property="og:title" content="engrpanda — John Rey Cabatana">
-<meta property="og:description" content="Electronics Engineer who loves panda and building stuff.">
+<meta property="og:description" content="Electronics Engineer · Robotics · Embedded Systems · Mobile & Desktop Apps">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/53995355?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
@@ -472,6 +473,175 @@ footer{border-top:1px solid var(--b);padding:28px 0}
   .h-soc{gap:8px}
   .cp-meta{gap:5px}
 }
+
+/* ================= MODERN UI REFRESH (override layer) ================= */
+:root{
+  --bg:#05070c;--bg2:#0a0e17;--bg3:#0f1522;
+  --card:rgba(255,255,255,.035);--card2:rgba(255,255,255,.065);
+  --a:#5eead4;--ar:94,234,212;--a2:#818cf8;--a2r:129,140,248;
+  --t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;
+  --b:rgba(255,255,255,.08);--bh:rgba(94,234,212,.4);
+  --r:16px;--rl:24px;--nav:72px;
+  --glow:0 20px 60px -20px rgba(var(--ar),.25);
+  --grad:linear-gradient(135deg,#5eead4 0%,#818cf8 100%);
+  --fd:'Inter','Plus Jakarta Sans',sans-serif;--fb:'Inter','Plus Jakarta Sans',sans-serif;--ft:'Inter',sans-serif;
+}
+body{font-feature-settings:'cv11','ss01';-webkit-font-smoothing:antialiased;
+  background:radial-gradient(60rem 40rem at 85% -10%,rgba(129,140,248,.10),transparent 60%),
+             radial-gradient(50rem 35rem at -10% 20%,rgba(94,234,212,.07),transparent 60%),var(--bg)}
+body::before{opacity:.35}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--a),var(--a2))}
+::selection{background:rgba(var(--ar),.3)}
+
+/* sections & headings */
+.sec-alt{background:linear-gradient(180deg,transparent,rgba(255,255,255,.02) 20%,rgba(255,255,255,.02) 80%,transparent)}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid var(--b);border-radius:999px;background:var(--card);letter-spacing:.14em;font-size:10.5px;color:var(--a);margin-bottom:18px}
+.tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grad)}
+.sec-h{font-weight:800;letter-spacing:-.035em;line-height:1.05;font-size:clamp(30px,4.6vw,52px)}
+.sec-h em{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal}
+.sec-sub{font-size:16px;line-height:1.7}
+
+/* buttons */
+.btn-p{background:var(--grad);color:#04121a;border-radius:999px;padding:14px 28px;font-weight:700;box-shadow:0 10px 30px -10px rgba(var(--ar),.55)}
+.btn-p:hover{background:var(--grad);filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(var(--a2r),.6)}
+.btn-o{border-radius:999px;border:1px solid var(--b);background:var(--card);backdrop-filter:blur(10px);padding:14px 28px}
+.btn-o:hover{border-color:var(--bh);color:var(--t1);background:var(--card2)}
+
+/* floating pill nav */
+.nav{top:14px;left:0;right:0;height:56px;pointer-events:none}
+.nav .wrap{max-width:1100px}
+.nav-in{pointer-events:auto;height:56px;padding:0 10px 0 22px;border:1px solid var(--b);border-radius:999px;background:rgba(10,14,23,.55);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 10px 40px -12px rgba(0,0,0,.6)}
+.nav.sc{background:none;border-bottom:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav.sc .nav-in{background:rgba(10,14,23,.8)}
+.logo{font-family:var(--fd);font-weight:800;letter-spacing:-.03em;font-size:19px}
+.nav-ul a{border-radius:999px;min-height:38px;padding:0 14px}
+.nav-ul a:hover,.nav-ul a.act{background:var(--card2);color:var(--t1)}
+.nav-cta{background:var(--grad)!important;color:#04121a!important;border:none!important;font-weight:700!important}
+.nav-cta:hover{filter:brightness(1.1)}
+.mob-nav{top:78px;left:12px;right:12px;border:1px solid var(--b);border-radius:20px;background:rgba(10,14,23,.92)}
+
+/* hero */
+#home::before,#home::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none}
+#home::before{width:520px;height:520px;right:-120px;top:8%;background:rgba(129,140,248,.22)}
+#home::after{width:440px;height:440px;left:-140px;bottom:0;background:rgba(94,234,212,.14)}
+.hero-wrap{max-width:760px}
+.h-eye{display:inline-flex;padding:7px 14px;border:1px solid var(--b);border-radius:999px;background:var(--card);backdrop-filter:blur(10px)}
+.h-line{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+.h-et{letter-spacing:.08em;text-transform:none;font-size:12px;color:var(--t2)}
+.h-name{font-weight:800;letter-spacing:-.05em;line-height:.98;font-size:clamp(46px,9vw,100px)}
+.h-name .ac{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-role{font-weight:600;color:var(--t1);letter-spacing:-.01em}
+.cursor{background:var(--a2)}
+.h-bio{font-size:clamp(15px,1.6vw,18px);line-height:1.75}
+.soc-ico{width:44px;height:44px;border-radius:50%;background:var(--card);backdrop-filter:blur(8px)}
+.soc-ico:hover{background:var(--card2);transform:translateY(-3px);border-color:var(--bh)}
+.h-stats{right:0;border:1px solid var(--b);border-radius:var(--rl);background:var(--card);backdrop-filter:blur(16px);padding:26px 30px}
+.h-stat-n{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* cards (shared) */
+.card,.wid-card,.cp-card,.gh-card,.hb-card,.tl-box,.ghs-card,.ct-lk,.ab-lk{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.card,.wid-card,.cp-card,.hb-card{border-radius:var(--rl);border-color:var(--b);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02))}
+.card:hover,.wid-card:hover,.cp-card:hover,.hb-card:hover{border-color:var(--bh);box-shadow:var(--glow)}
+
+/* about */
+.ab-img-border{background:var(--grad);filter:blur(22px);opacity:.35;inset:8px}
+.ab-img-frame{border-radius:28px;border:1px solid var(--b)}
+.ab-badge{border-radius:999px;padding:9px 16px}
+.ab-det{padding:14px 16px;border:1px solid var(--b);border-radius:14px;background:var(--card)}
+.ab-lk{border-radius:999px;padding:9px 16px}
+.ab-lk:hover{background:var(--card2)}
+
+/* what i do — bento feel */
+.wid-grid{gap:16px}
+.wid-card{padding:26px 22px}
+.wid-card::after{background:var(--grad);height:3px}
+.wid-ico{width:48px;height:48px;border-radius:14px;background:var(--grad);color:#04121a;border:none}
+.wid-card:hover .wid-ico{background:var(--grad);transform:scale(1.08) rotate(-4deg)}
+.wid-count{background:var(--card2);color:var(--t2);border:1px solid var(--b)}
+.wid-card h3{font-size:16px;letter-spacing:-.02em}
+.wid-card p{font-size:13px}
+
+/* skills */
+.sk-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.06)}
+.sk-fill{border-radius:999px;background:var(--grad)}
+.sk-lv{color:var(--t2)}
+
+/* projects */
+.pf-btn{border-radius:999px;background:var(--card);padding:9px 16px}
+.pf-btn.act{background:var(--grad);color:#04121a;border-color:transparent}
+.pf-btn.act .pf-ct{background:rgba(4,18,26,.85);color:var(--a)}
+.cp-grid{gap:22px}
+.cp-card-top{display:none}
+.cp-img,.cp-img-ph{height:210px;transition:transform .5s ease}
+.cp-card{overflow:hidden}
+.cp-card:hover .cp-img{transform:scale(1.04)}
+.cp-body{padding:22px}
+.cp-title{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.cp-card.featured .cp-title{font-size:22px}
+.cp-yr{border-radius:999px;padding:3px 10px}
+.cp-feat-badge{background:var(--grad);color:#04121a;border-radius:999px;padding:3px 10px}
+.cp-tag{border-radius:999px;color:var(--a);background:rgba(var(--ar),.08);border-color:rgba(var(--ar),.18)}
+.cp-lk{border-radius:999px;padding:7px 15px}
+.cp-lk.primary{background:var(--grad);color:#04121a;border-color:transparent}
+.cp-lk.primary:hover{background:var(--grad);filter:brightness(1.1)}
+
+/* github */
+.ghs-card{border-radius:var(--r);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02))}
+.ghs-ico{border-radius:12px;background:var(--grad);color:#04121a}
+.gh-card{border-radius:var(--r);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+.gh-card::before{background:var(--grad)}
+.gh-lk{border-radius:50%}
+
+/* timeline */
+.tl-wrap::before{background:linear-gradient(to bottom,var(--a),var(--a2),transparent);width:2px;left:24px}
+.tl-dot{border-color:var(--a2);width:14px;height:14px}
+.tl-dot.live{background:var(--grad);border-color:transparent;box-shadow:0 0 0 5px rgba(var(--a2r),.18)}
+.tl-box{border-radius:var(--r);padding:18px 22px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+.tl-box:hover{transform:translateX(4px)}
+
+/* hobbies */
+.hb-card{padding:26px}
+.hb-em{width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--card2);border-radius:16px}
+
+/* stories */
+.st-card{border-radius:20px;width:168px;height:290px}
+.st-arrow{background:rgba(10,14,23,.8);backdrop-filter:blur(12px)}
+.st-arrow:hover{background:var(--grad);color:#04121a;border-color:transparent}
+
+/* contact */
+.ct-lk{border-radius:14px;padding:14px 18px}
+.ct-lk:hover{background:var(--card2);transform:translateX(4px)}
+.ct-lk i{color:var(--a)}
+
+/* footer, modals, toast */
+footer{border-top:1px solid var(--b)}
+.ft-logo{font-family:var(--fd);font-weight:800;letter-spacing:-.03em}
+.login-box,.stm-box{border-radius:28px;background:rgba(10,14,23,.95)}
+.login-btn,.adm-save{background:var(--grad);color:#04121a;border-radius:999px}
+.login-btn:hover,.adm-save:hover{background:var(--grad);filter:brightness(1.1)}
+#toast{border-radius:999px;border-color:var(--b);padding:12px 22px;box-shadow:0 12px 40px -10px rgba(0,0,0,.6)}
+
+@media(max-width:640px){
+  .nav{top:10px}
+  .nav-in{padding:0 8px 0 18px}
+  .cp-card{border-radius:18px}
+  .cp-body{padding:12px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .btn-p,.btn-o,.soc-ico,.tl-box,.ct-lk{transition:all .3s cubic-bezier(.4,0,.2,1)}
+}
+
+/* PRINT / SAVE AS PDF */
+@media print{
+  body{background:#fff!important;color:#111!important}
+  body::before,#home::before,#home::after,#hc,.nav,.mob-nav,.h-scroll,.h-acts,.h-soc,#toast,#hobbies,#stories,.proj-filter-wrap,.gh-divider,.gh-stats,.gh-grid,.wid-hint{display:none!important}
+  *{color:#111!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;border-color:#ccc!important}
+  .rv{opacity:1!important;transform:none!important}
+  #home{min-height:0;padding:24px 0}.sec{padding:20px 0}
+  .h-name,.sec-h em,.h-name .ac{-webkit-text-fill-color:#111;color:#111!important}
+  .cp-card,.tl-item,.wid-card{break-inside:avoid}
+  .sk-fill{background:#111!important}
+}
 </style>
 </head>
 <body>
@@ -482,12 +652,11 @@ footer{border-top:1px solid var(--b);padding:28px 0}
       <a href="#home" class="logo">engr<span>panda</span></a>
       <ul class="nav-ul">
         <li><a href="#about">About</a></li>
-        <li><a href="#whatido">What I Do</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#hobbies">Hobbies</a></li>
-        <li><a href="#stories">Stories</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="#timeline">Experience</a></li>
+        <li><a href="#contact" class="nav-cta">Hire Me</a></li>
       </ul>
       <button class="hbg" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -495,28 +664,27 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 </nav>
 <div class="mob-nav" id="mob-nav">
   <a href="#about" onclick="closeMobNav()">About</a>
-  <a href="#whatido" onclick="closeMobNav()">What I Do</a>
+  <a href="#services" onclick="closeMobNav()">Services</a>
+  <a href="#skills" onclick="closeMobNav()">Skills</a>
   <a href="#projects" onclick="closeMobNav()">Projects</a>
-  <a href="#timeline" onclick="closeMobNav()">Timeline</a>
-  <a href="#hobbies" onclick="closeMobNav()">Hobbies</a>
-  <a href="#stories" onclick="closeMobNav()">Stories</a>
-  <a href="#contact" onclick="closeMobNav()" style="color:var(--a);">Contact</a>
+  <a href="#timeline" onclick="closeMobNav()">Experience</a>
+  <a href="#contact" onclick="closeMobNav()" style="color:var(--a);">Hire Me</a>
 </div>
 
 <section id="home">
   <canvas id="hc"></canvas>
   <div class="wrap">
     <div class="hero-wrap">
-      <div class="h-eye"><div class="h-line"></div><span class="h-et" id="h-tagline">just a simple guy who loves panda and building stuff</span></div>
+      <div class="h-eye"><div class="h-line"></div><span class="h-et" id="h-tagline">Open to jobs & commissions</span></div>
       <div class="h-name" id="h-name">John Rey<br><span class="ac">Cabatana</span></div>
       <div class="h-role-w"><div class="h-role" id="h-role">Electronics Engineer<span class="cursor"></span></div></div>
-      <div class="h-bio" id="h-bio">Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼</div>
+      <div class="h-bio" id="h-bio">Electronics engineer specializing in robotics, embedded systems, and Android/Windows application development. Based in Manila, Philippines.</div>
       <div class="h-acts">
         <a href="#projects" class="btn-p"><i class="fa-solid fa-layer-group"></i> View Projects</a>
-        <a href="#contact" class="btn-o"><i class="fa-regular fa-envelope"></i> Get in Touch</a>
+        <a href="#services" class="btn-o"><i class="fa-solid fa-handshake"></i> Commission a Project</a>
       </div>
       <div class="h-soc">
-        <span class="h-soc-lbl">Find me on</span>
+        <span class="h-soc-lbl">Profiles</span>
         <a href="https://github.com/engrpanda" target="_blank" class="soc-ico" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/engrpanda/" target="_blank" rel="noopener" class="soc-ico" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="https://twitter.com/engrjanleepanda" target="_blank" class="soc-ico" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
@@ -540,7 +708,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
       <div class="ab-img-w rv">
         <div class="ab-img-border"></div>
         <div class="ab-img-frame"><img src="https://avatars.githubusercontent.com/u/53995355?v=4" alt="John Rey Cabatana" id="ab-avatar"></div>
-        <div class="ab-badge"><div class="ab-dot"></div><span class="ab-badge-t">Open to Collaboration</span></div>
+        <div class="ab-badge"><div class="ab-dot"></div><span class="ab-badge-t">Open to Jobs & Commissions</span></div>
       </div>
       <div class="ab-txt">
         <span class="tag">About Me</span>
@@ -563,6 +731,25 @@ footer{border-top:1px solid var(--b);padding:28px 0}
           <a href="https://play.google.com/store/apps/developer?id=engrpandaece" target="_blank" class="ab-lk"><i class="fa-brands fa-google-play"></i> Play Store</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="sec sec-alt">
+  <div class="wrap">
+    <div style="margin-bottom:36px;">
+      <span class="tag">Services</span>
+      <h2 class="sec-h rv">Commissions & <em>Thesis Projects</em></h2>
+      <p class="sec-sub rv d1">Besides full-time work, I take on custom builds — from first idea to a working prototype.</p>
+    </div>
+    <div class="wid-grid">
+      <div class="card rv d1"><div class="wid-ico" style="margin-bottom:14px"><i class="fa-solid fa-graduation-cap"></i></div><h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Thesis &amp; Capstone Projects</h3><p style="font-size:13px;color:var(--t2);line-height:1.65">Hardware and software projects for engineering and IT students — embedded systems, robotics, IoT, and mobile or desktop apps.</p></div>
+      <div class="card rv d2"><div class="wid-ico" style="margin-bottom:14px"><i class="fa-solid fa-microchip"></i></div><h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Custom Electronics &amp; Robotics</h3><p style="font-size:13px;color:var(--t2);line-height:1.65">Arduino, ESP32 and Raspberry Pi builds, sensor and control systems, and robot design made to your requirements.</p></div>
+      <div class="card rv d3"><div class="wid-ico" style="margin-bottom:14px"><i class="fa-solid fa-code"></i></div><h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Apps &amp; Websites</h3><p style="font-size:13px;color:var(--t2);line-height:1.65">Android apps, Windows desktop tools, and database-backed websites for small businesses and personal projects.</p></div>
+    </div>
+    <div class="rv" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <a class="btn-p" href="mailto:support.engrpanda@gmail.com?subject=Project%20inquiry&body=Project%20type%20(thesis%20%2F%20commission)%3A%0ADescription%3A%0ADeadline%3A%0ABudget%3A"><i class="fa-regular fa-envelope"></i> Request a Quote</a>
+      <span style="font-size:13px;color:var(--t3)">Tell me what you need, your deadline, and your budget.</span>
     </div>
   </div>
 </section>
@@ -654,22 +841,21 @@ footer{border-top:1px solid var(--b);padding:28px 0}
     <div class="ct-grid">
       <div class="rv">
         <span class="tag">Get in Touch</span>
-        <h2 class="sec-h">Let's <em>Connect</em></h2>
-        <p style="color:var(--t2);margin-top:12px;line-height:1.8;font-size:15px;">Have a project idea, collaboration, or just want to chat about robots and pandas? Drop me a line.</p>
+        <h2 class="sec-h">Let's <em>Work Together</em></h2>
+        <p style="color:var(--t2);margin-top:12px;line-height:1.8;font-size:15px;">Hiring for a robotics, embedded, or software role — or need a thesis, capstone, or custom project built? Send me the details and I'll get back to you.</p>
         <div class="ct-lks">
           <a href="mailto:support.engrpanda@gmail.com" class="ct-lk"><i class="fa-regular fa-envelope"></i> support.engrpanda@gmail.com</a>
           <a href="https://github.com/engrpanda" target="_blank" class="ct-lk"><i class="fa-brands fa-github"></i> github.com/engrpanda</a>
           <a href="https://www.linkedin.com/in/engrpanda/" target="_blank" rel="noopener" class="ct-lk"><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/engrpanda</a>
           <a href="https://twitter.com/engrjanleepanda" target="_blank" class="ct-lk"><i class="fa-brands fa-x-twitter"></i> @engrjanleepanda</a>
           <a href="https://www.hackster.io/engrpandaece" target="_blank" class="ct-lk"><i class="fa-solid fa-microchip"></i> hackster.io/engrpandaece</a>
-          <a href="https://www.paypal.com/paypalme/engrpandaece" target="_blank" class="ct-lk"><i class="fa-brands fa-paypal"></i> Buy me a coffee ☕</a>
         </div>
       </div>
       <div class="rv d2" style="display:flex;flex-direction:column;gap:16px;">
         <div class="card" style="background:linear-gradient(135deg,rgba(var(--ar),.08),rgba(var(--a2r),.08));border-color:rgba(var(--ar),.2);">
-          <div style="font-size:36px;margin-bottom:12px;">🐼</div>
-          <h3 style="font-family:var(--fd);font-size:18px;font-weight:700;margin-bottom:6px;">engrpanda</h3>
-          <p style="font-size:13px;color:var(--t2);line-height:1.7;">Just a simple guy who loves panda and building stuff. Electronics Engineer based in the Philippines.</p>
+          <div style="font-size:36px;margin-bottom:12px;">🤖</div>
+          <h3 style="font-family:var(--fd);font-size:18px;font-weight:700;margin-bottom:6px;">John Rey Cabatana</h3>
+          <p style="font-size:13px;color:var(--t2);line-height:1.7;">Electronics Engineer based in Manila, Philippines, with hands-on experience in robotics, embedded systems, and mobile and desktop software.</p>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div class="card" style="text-align:center;">
@@ -1060,7 +1246,7 @@ footer{border-top:1px solid var(--b);padding:28px 0}
 <script>
 // ===== DEFAULT DATA =====
 const DD={
-  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"just a simple guy who loves panda and building stuff",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"support.engrpanda@gmail.com",github:"engrpanda"},
+  profile:{name:"John Rey Cabatana",title:"Electronics Engineer · ECE, ECT",tagline:"Open to jobs & commissions",avatar:"https://avatars.githubusercontent.com/u/53995355?v=4",bio:"Electronics engineer specializing in robotics, embedded systems, and Android/Windows application development. Based in Manila, Philippines.",ab1:"Innovative Electronics Engineer with 4+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",ab2:"Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",email:"support.engrpanda@gmail.com",github:"engrpanda"},
   whatIDo:[
     {icon:"fa-microchip",tag:"embedded",title:"Embedded Systems",desc:"Arduino, ESP32, Raspberry Pi — designing circuits and writing firmware from scratch."},
     {icon:"fa-robot",tag:"robotics",title:"Robotics",desc:"Educational robots, service robots, cleaning robots and more — from mechanical design to full control systems."},
@@ -1861,7 +2047,8 @@ async function loadFromGitHub(){
   try{
     const owner=D.profile.github||'engrpanda';
     const repo=owner+'.github.io';
-    const r=await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/main/data.json?t=${Date.now()}`);
+    const isLocal=['localhost','127.0.0.1'].includes(location.hostname);
+    const r=await fetch(isLocal?`data.json?t=${Date.now()}`:`https://raw.githubusercontent.com/${owner}/${repo}/main/data.json?t=${Date.now()}`);
     if(!r.ok)return;
     const remote=await r.json();
     // Only use remote if it looks valid

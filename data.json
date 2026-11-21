@@ -2,9 +2,9 @@
   "profile": {
     "name": "John Rey Cabatana",
     "title": "Electronics Engineer · ECE, ECT",
-    "tagline": "just a simple guy who loves panda and building stuff",
+    "tagline": "Open to jobs & commissions",
     "avatar": "https://avatars.githubusercontent.com/u/53995355?v=4",
-    "bio": "Innovative electronics engineer specializing in robotics, embedded systems, and mobile app development. Building cool stuff from Manila City, PH. 🐼",
+    "bio": "Electronics engineer specializing in robotics, embedded systems, and Android/Windows application development. Based in Manila, Philippines.",
     "ab1": "Innovative Electronics Engineer with 8+ years of experience in electronics and robotics. Highly experienced in writing code and algorithms as well as building complex robotics designs through various programming languages.",
     "ab2": "Possess an unbridled passion for building, tinkering and making stuff. Most of my projects were born out of pure curiosity during COVID lockdowns — and the making never stopped.",
     "email": "support.engrpanda@gmail.com",
@@ -73,6 +73,42 @@
     }
   ],
   "projects": [
+    {
+      "id": "p1790000000001",
+      "title": "ManaCore — MTG Tester & Simulator",
+      "year": "2026",
+      "icon": "🃏",
+      "desc": "<p>A native Android companion for Magic: The Gathering Commander/EDH players that shows how a deck actually performs before it hits the table. Build or import a decklist, then run mulligan, opening-hand and draw-flow tests and hundreds of repeated game simulations in seconds — all calculated on-device, with no account, server or AI required.</p><ul><li>Deck, collection and wishlist management with folders, tags, notes and Commander support</li><li>Camera + on-device OCR card scanning, with experimental Arduino/ESP32 microcontroller control for automated scanning</li><li>Simulator, playtest table and deck stats (mana curve, colour pie, type breakdown)</li><li>Scryfall-powered search, card details, rulings and live prices in 30+ currencies</li><li>Export decks as text, CSV or a shareable visual deck image; built-in life counter</li></ul>",
+      "image": "sc/manacore.png",
+      "link": "https://play.google.com/store/apps/details?id=com.manacore.engrpanda",
+      "github": "",
+      "tags": [
+        "mobile",
+        "arduino",
+        "esp"
+      ],
+      "featured": false,
+      "status": ""
+    },
+    {
+      "id": "p1790000000002",
+      "title": "CircuitSpace AI — Visual Circuit Designer for Arduino & ESP32",
+      "year": "2026",
+      "icon": "🔌",
+      "desc": "<p>An AI-assisted visual circuit editor for Arduino and ESP32. Place components, wire them up on a canvas, and it validates the circuit and generates the firmware. Describe a circuit and the AI builds it, then edit it visually, validate, generate code and upload to hardware.</p><ul><li>Drag-to-wire canvas plus a pin tree, with Fritzing-style manual wire routing and undo</li><li>Live validation with seven rules (missing LED resistor, over-voltage, power shorts, pin conflicts, power budget) — errors block upload</li><li>AI is optional: the canvas, validation and code generation work with no API key or internet, including an offline assistant with built-in circuit recipes</li><li>Runs in the browser; the Tauri desktop app adds USB upload and native file dialogs</li></ul><p>Built with React, TypeScript and Vite, with a Rust/Tauri desktop shell.</p>",
+      "image": "sc/circuitspace.png",
+      "link": "https://circuitspace-ai.vercel.app/",
+      "github": "",
+      "tags": [
+        "embedded",
+        "arduino",
+        "esp",
+        "ai",
+        "web"
+      ],
+      "featured": false,
+      "status": ""
+    },
     {
       "id": "p1787040093287",
       "title": "Hatag — Direct Browser-to-Browser File Transfer",
